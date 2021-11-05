@@ -1,0 +1,22 @@
+.footerParentDiv {
+    width:100%;
+    display:grid;
+  }
+  
+  .footerParentDiv .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #111111;
+    color: rgb(236, 236, 236);
+    
+    
+  }
+  
+  .footerParentDiv .footer p {
+    margin: 2px;
+    font-size: 15px;
+    font-family:sans-serif;
+   
+  }

@@ -1,0 +1,36 @@
+.bannerParentDiv {
+    padding-top: 4em;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+  }
+  .bannerParentDiv .bannerChildDiv {
+    padding-top: 0em;
+    text-align: left;
+   
+  }
+  
+  
+  .bannerChildDiv .banner {
+    position: relative;
+    width: 100vw;
+    opacity: 70%;
+    
+    
+  }
+  .bannerChildDiv .banner img{
+    width: 100vw;
+   
+  }
+  .bgcolor{
+    background-color: rgb(255, 145, 0);
+  }
+  @media only screen and (max-width: 700px) {
+    .otherQuickOptions {
+      display: none;
+    }
+    .bannerChildDiv .banner {
+      position: relative;
+    }
+  }
+  

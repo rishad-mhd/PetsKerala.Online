@@ -1,0 +1,103 @@
+.moreView {
+    margin: 16px 16px 24px;
+    padding: 16px 16px 32px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-left: 7%;
+    margin-right: 7%;
+    box-shadow:  0px 0px 2px rgb(0 0 0 / 10%);
+  }
+  
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+  .heading :first-child {
+    font-size: 30px;
+    color: #002f34;
+    font-weight: 600;
+  }
+  
+  .heading :last-child {
+    box-shadow: 0px 0px 4px 4px rgb(0 0 0 / 8%);
+    padding: 10px;
+    border-radius: 20px;
+  }
+  
+  .recommendations .cards {
+    display: flex;
+  }
+  
+  .moreView .cards {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    
+  }
+  
+  .card {
+    margin-right: 15px;
+    padding: 13px;
+    max-width: 222px;
+    width: 222px;
+    height: 270px;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .cards::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .cards::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 px rgba(216, 216, 216, 0.3); 
+    border-radius: 10px;
+  }
+  
+  .cards::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  }
+  
+  .card .favorite {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .card .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card .image img {
+    height: 100px;
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    text-align: center;
+  }
+  .card .content .rate {
+    margin-top: 10px;
+    font-size: larger;
+   
+    font-weight: bold;
+  }
+  .card .content .kilometer {
+    font-size: medium;
+  }
+  .card .content .name {
+    font-size: small;
+  }
+  .card .date {
+    display: flex;
+    justify-content: flex-end;
+    font-size: small;
+  }
+  
