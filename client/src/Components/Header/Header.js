@@ -4,13 +4,17 @@ import SellButtonPlus from '../../assets/SellButtonPlus'
 import Search from '../../assets/Search';
 import Arrow from '../../assets/Arrow';
 import SellButton from '../../assets/SellButton';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Header() {
-    return (
-        <div className="headerParentDiv">
+  const navigate = useNavigate()
+  return (
+    <div className="headerParentDiv">
       <div className="headerChildDiv">
-        <div  className="brandName">
-         <h4> petskerala.online</h4>
+        <div className="brandName" onClick={()=>{
+          navigate('/')
+        }}>
+          <h4> petskerala.online</h4>
         </div>
         <div className="placeSearch">
           <Search></Search>
@@ -29,12 +33,13 @@ function Header() {
           </div>
         </div>
         <div className="loginPage">
-            <span className=''>Login</span>
-            <hr/>
-            <span className='logout'>Logout</span>
+          <span className=''>Login</span>
+          <hr />
+          <span className='logout'>Logout</span>
         </div>
-
-        <div  className="sellMenu">
+        <div className="sellMenu" onClick={()=>{
+          navigate('/create')
+        }} >
           <SellButton></SellButton>
           <div className="sellMenuContent">
             <SellButtonPlus></SellButtonPlus>
@@ -43,7 +48,7 @@ function Header() {
         </div>
       </div>
     </div >
-    )
+  )
 }
 
 export default Header

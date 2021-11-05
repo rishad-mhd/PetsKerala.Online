@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+var db = require('./Config/Connection')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -18,6 +19,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+db.connect((err)=>{
+  if(err)
+  console.log('Connection Error'+err)
+  else
+  console.log('Database connected to port 27017 successfuly')
+})
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

@@ -164,7 +164,9 @@
   .loginPage:hover hr{
     display: none;
   }
-  
+  .loginPage:hover {
+    padding-bottom: 2px;
+  }
   .loginPage hr {
     margin: 0;
     background-color: rgb(69, 226, 90);
@@ -186,22 +188,6 @@
     background: linear-gradient(142deg, rgba(5, 255, 243, 0.596) 0%, rgba(7, 250, 68, 0.5) 45%, rgba(8, 202, 34, 0.548) 100%);
      
   }
-  /* .sellMenu .all {
-    fill: rgb(255, 255, 255);
-  
-  } */
-  /* 
-  .sellMenu .top {
-    fill: #fcffff;
-  }
-  
-  .sellMenu .left {
-    fill: #ffffff;
-  }
-  
-  .sellMenu .right {
-    fill: #0ba1e7;
-  }   */
   
   .sellMenu .sellMenuContent {
     display: flex;

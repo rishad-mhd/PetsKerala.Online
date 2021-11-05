@@ -1,0 +1,59 @@
+.border{
+    width:100%;
+    padding: 50px;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    box-shadow: 5px 5px 16px 8px rgb(0 0 0 / 10%);
+    padding: 400px;
+    border-radius:22px;
+    background-color: #8ed4d6;
+}
+.centerDiv {
+    /* border: 1px solid black; */
+    width: max-content;
+    padding: 50px;
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    box-shadow: 5px 5px 16px 8px rgb(0 0 0 / 10%);
+    /* padding: 50px; */
+    border-radius:22px;
+    background-color: rgba(255, 255, 255, 0.788);
+  }
+  .input {
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    outline-color: transparent;
+  }
+  
+  .uploadBtn {
+    margin-top: 30px;
+    width: 55%;
+    height: 48px;
+    /* border-color: transparent; */
+    background-color: #0404059f;
+    box-shadow: 1px 1px 3px 2px rgb(0 0 0 / 9%);
+    padding: 10px;
+    border-radius:22px;
+    color: rgb(255, 255, 255);
+    /* font-weight: 900; */
+    border:0px;
+  }
+  .uploadBtn:hover {
+    background-color: white;
+    color: #002f34;
+    /* border: 2px solid #002f34; */
+  }
+  .centerDiv input ,fname {
+    box-shadow: 1px 1px 3px 2px rgb(0 0 0 / 9%);
+    padding: 10px;
+    border-radius:22px;
+    background-color: rgb(255, 255, 255);
+    border:0px;
+  }
