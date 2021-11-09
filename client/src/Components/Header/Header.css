@@ -144,6 +144,7 @@
     position: relative;
     display: inline-block;
     padding-left:7px ;
+    cursor: pointer;
   }
   
   .logout{

@@ -6,3 +6,10 @@ export const setPets = (Pets) =>{
         payload:Pets
     }
 }
+
+export const setUser = (User) =>{
+    return{
+        type:ActionTypes.SET_USER,
+        payload:User
+    }
+}

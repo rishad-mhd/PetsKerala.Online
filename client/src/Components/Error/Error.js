@@ -1,10 +1,10 @@
 import React from 'react'
 import './Error.css'
 
-function Error() {
+function Error(props) {
     return (
         <div>
-            <p className='error'>hgkhjknjkm</p>
+            <p className='error'>{props.value}</p>
         </div>
     )
 }

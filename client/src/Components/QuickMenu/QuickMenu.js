@@ -18,7 +18,7 @@ function QuickMenu() {
                 <Heart></Heart>
               </div>
               <div className="image">
-                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlrZqTCInyg6RfYC7Ape20o-EWP1EN_A8fOA&usqp=CAU' alt="Pet Image" />
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlrZqTCInyg6RfYC7Ape20o-EWP1EN_A8fOA&usqp=CAU' alt='Pet Image' />
               </div>
               <div className="content">
                 <p className="rate">&#x20B9; 8000</p>

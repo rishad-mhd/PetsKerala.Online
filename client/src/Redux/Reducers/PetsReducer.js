@@ -12,3 +12,12 @@ export const petsReducer = (state = initialState, { type, payload })=>{
             return state
     }
 }
+
+export const userReducer = (state={},{type,payload})=>{
+    switch(type){
+        case ActionTypes.SET_USER:
+            return {...state,user:payload}
+        default:
+            return state
+    }
+}
