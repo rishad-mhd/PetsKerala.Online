@@ -10,7 +10,7 @@ function Banner() {
                         <div className="banner">
                             <img
                                 // src="../../../Images/banner copy.png"
-                                src="https://cdn.shopify.com/s/files/1/0523/9855/5314/collections/Collection_banners_34.png?v=1621765900"
+                                src="/images/img4.png"
                                 alt=""
                             />
                             {/* <h1>Welcome To Petskerala</h1> */}

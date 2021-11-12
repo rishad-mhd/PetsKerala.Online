@@ -15,6 +15,8 @@ function Login() {
     const [error, setError] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [viewPassword, setViewPassword] = useState()
+
     const googleLogin = () => {
         setLoading(true)
         let timer = null;
@@ -32,30 +34,44 @@ function Login() {
                 }
             }, 500)
         }
-    
+
     }
-    
+
     const fetchAuthUser = async () => {
-        const response = await axios.get('users/auth/user',{withCredentials:true})
-        .catch((err)=>{
-            console.log("not authenticated",err);
-            setError("Authentication failed")
-        })
-        if (response && response.data){
-            console.log("user",response.data);
+        const response = await axios.get('users/auth/user', { withCredentials: true })
+            .catch((err) => {
+                console.log("not authenticated", err);
+                setError("Authentication failed")
+                setLoading(false)
+            })
+        if (response && response.data) {
+            console.log("user", response.data);
             dispatch(setUser(response.data))
             navigate('/')
 
 
         }
     }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios.post('users/auth/login', { email, password }, { withCredentials: true })
+            .then((res) => {
+                console.log(res)
+                dispatch(setUser(res.data))
+                navigate('/')
+            }).catch((err) => {
+                console.log(err.response.data.message)
+                setError(err.response.data.message)
+            })
+    }
 
-    
+
+
     return (
         <div>
             <div className="loginParentDiv">
                 <h2>Login</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                     {error && <Error value={error} />}
                     <label htmlFor="fname">Email</label>
                     <br />
@@ -69,13 +85,14 @@ function Login() {
                         id="fname"
                         name="email"
                         defaultValue="John"
+                        required
                     />
                     <br />
                     <label htmlFor="lname">Password</label>
                     <br />
                     <input
                         className="input"
-                        type="password"
+                        type={viewPassword?"text":"password"}
                         value={password}
                         onChange={(e) => {
                             setPassword(e.target.value)
@@ -83,7 +100,11 @@ function Login() {
                         id="lname"
                         name="password"
                         defaultValue="Doe"
+                        required
                     />
+                    <i class="far fa-eye" onClick={()=>{
+                        setViewPassword(viewPassword?false:true)
+                    } }></i>
                     <br />
                     <label htmlFor="lname">Forget Password ?</label>
                     <br />

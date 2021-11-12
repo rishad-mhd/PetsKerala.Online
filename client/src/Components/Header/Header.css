@@ -1,6 +1,8 @@
 .headerParentDiv {
     padding: 10px;
-    background-color: rgb(255, 255, 255);
+    background: rgb(11,132,228);
+    background: linear-gradient(142deg, rgba(11, 130, 228, 0.158) 0%, rgba(83, 11, 228, 0.13) 45%, rgba(39, 6, 224, 0.24) 100%);
+
     position: fixed;
     width: 100vw;
     z-index: 999;
@@ -19,44 +21,49 @@
     cursor: pointer;
   }
   
-  .placeSearch {
+  /* .placeSearch {
     width: 16em;
     height: 48px;
     display: flex;
     align-items: center;
     padding: 0 8px;
     /* border: 2px solid #002f34; */
-    border-radius: 4px;
-    background-color: white;
+    /* border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.301);
   }
-  
-  .placeSearch::selection {
-    border-color: #23e5db;
-    outline-color: #23e5db;
-  }
-  
-  .placeSearch input {
+   */
+  /* .placeSearch::selection {
+    /* border-color: #23e5db;
+    outline-color: #23e5db; */
+    /* border-color: transparent;
+    outline-color: transparent;
+  } 
+   */
+  /* .placeSearch input {
     border-color: transparent;
     outline-color: transparent;
-  }
-  
+  } */
+ 
   .productSearch {
-    width: 35em;
+    width: 20em;
     height: 48px;
     /* border: 2px solid #002f34; */
     border-radius: 4px;
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: rgb(253, 253, 253);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-color: transparent;
+    outline-color: transparent;
   }
   
   .productSearch .input {
     width: 100%;
     height: 100%;
     display: flex;
+    background-color: none;
   }
   
   .productSearch .input input {
@@ -67,12 +74,12 @@
   }
   
   .productSearch .searchAction {
-    min-width: 48px;
+    min-width: 40px;
     height: 48px;
     position: relative;
     display: flex;
     cursor: pointer;
-    background-color: #44ff0b;
+    background-color: #58ff0bb9;
     border-radius: 0 4px 4px 0;
   }
   
@@ -81,7 +88,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    fill: white;
+    fill: rgba(14, 2, 2, 0.918);
   }
   
   .language {
@@ -184,9 +191,9 @@
     cursor: pointer;
     box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 30%);
     padding:0px;
-    border-radius:20px; 
-    background: rgb(255, 255, 255);
-    background: linear-gradient(142deg, rgba(5, 255, 243, 0.596) 0%, rgba(7, 250, 68, 0.5) 45%, rgba(8, 202, 34, 0.548) 100%);
+    border-radius:14px; 
+    background: rgba(23, 204, 92, 0.493);
+    /* background: linear-gradient(142deg, rgba(5, 255, 243, 0.048) 0%, rgba(7, 250, 68, 0.096) 45%, rgba(8, 202, 34, 0.158) 100%); */
      
   }
   
@@ -252,4 +259,17 @@
     margin-top: -3.5em;
     margin-left: 10em;
     float: right;
+  }
+  .Home{
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    width: 30em;
+  }
+  .Home td{
+    padding-left: 25px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: rgba(240, 248, 255, 0.116);
+    
   }

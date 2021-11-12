@@ -15,7 +15,7 @@ function CreatePost() {
         <Fragment>
             <Header />
             <card>
-                <div className="border">
+                <div className="bg-image">
                     <div className="centerDiv">
                         {error && <Error value="Please fill out the form completely" />}
                         <label htmlFor="fname">Name</label>
@@ -26,7 +26,7 @@ function CreatePost() {
                             value={name}
                             id="fname"
                             name="Name"
-                            placeholder="IPHONE"
+                            placeholder="Dog"
                             onChange={(e) => {
                                 setName(e.target.value)
                             }}
@@ -44,13 +44,15 @@ function CreatePost() {
                             }}
                         >
                             <option value="" disabled>Select Category</option>
-                            <option value="Cars">Cars</option>
-                            <option value="Motorcycles">Motorcycles</option>
-                            <option value="Mobiles">Mobiles</option>
-                            <option value="For Sale:Houses & Apartments">For Sale:Houses & Apartments</option>
-                            <option value="Scooter">Scooter</option>
-                            <option value="Commercial & Other Vehicles">Commercial & Other Vehicles</option>
-                            <option value="For Rent: House & Apartments">For Rent: House & Apartments</option>
+                            <option value="Cat">Cats</option>
+                            <option value="Dog">Dogs</option>
+                            <option value="Pegion">Pegions</option>
+                            <option value="Birds">Birds</option>
+                            <option value="Fish">Fish</option>
+                            <option value="Animals">Animals</option>
+                            <option value="Hens">Hens</option>
+                            <option value="Ducks">Ducks</option>
+                            <option value="Other">Other</option>
                         </select>
                         <br />
                         <label htmlFor="fname">Price</label>
@@ -61,7 +63,7 @@ function CreatePost() {
                             value={price}
                             id="fname"
                             name="Price"
-                            placeholder="100000"
+                            placeholder="₹1000"
                             onChange={(e) => {
                                 setPrice(e.target.value)
                             }}

@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 var db = require('./Config/Connection');
-const passport = require('passport');
+var passport = require('passport');
 var session = require('express-session')
 
 // view engine setup
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
-app.use(session({ secret: "Key", cookie: { maxAge: 600000 } }))
+app.use(session({ secret: "Key", cookie: { maxAge: 600000 }, }))
 app.use(passport.session())
 app.use(cors({origin:"http://localhost:3000",credentials:true}))
 

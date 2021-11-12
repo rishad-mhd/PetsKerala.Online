@@ -2,10 +2,10 @@
     margin: 16px 16px 24px;
     padding: 16px 16px 32px;
     background-color: #ffffff;
-    border-radius: 10px;
+    border-radius: 14px;
     margin-left: 7%;
     margin-right: 7%;
-    box-shadow:  0px 0px 2px rgb(0 0 0 / 10%);
+    /* box-shadow:  0px 3px 4px 4px rgb(0 0 0  / 5%); */
   }
   
   .heading {
@@ -13,19 +13,20 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding-top: 2em;
-    padding-bottom: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
   }
   .heading :first-child {
-    font-size: 30px;
+    font-size: 25px;
     color: #002f34;
-    font-weight: 600;
+    font-weight: 450;
   }
   
   .heading :last-child {
-    box-shadow: 0px 0px 4px 4px rgb(0 0 0 / 8%);
-    padding: 10px;
-    border-radius: 20px;
+    box-shadow:  1px 1px 4px 1px rgb(0 0 0  / 6%);
+    padding: 6px;
+    border-radius: 10px;
+    background-color: rgb(245, 250, 255);
   }
   
   .recommendations .cards {
@@ -37,6 +38,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     width: 100%;
+    padding: 3px;
     
   }
   
@@ -45,9 +47,13 @@
     padding: 13px;
     max-width: 222px;
     width: 222px;
-    height: 270px;
+    height: 280px;
     display: inline-block;
     cursor: pointer;
+    box-shadow:  0px 0px 3px 3px rgb(0 0 0 / 5%);
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255);
+    border: none;
   }
   
   .cards::-webkit-scrollbar {

@@ -1,7 +1,7 @@
-module.exports.isAuthenticateduser=(req,res,next)=>{
-    if(req.user){
+module.exports.isAuthenticateduser = (req, res, next) => {
+    if (req.user) {
         next()
-    }else{
+    } else {
         res.status(401).send('You have must login!')
     }
 }

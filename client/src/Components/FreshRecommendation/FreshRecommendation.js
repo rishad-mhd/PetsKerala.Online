@@ -20,7 +20,7 @@ function FreshRecommendation() {
         <div>
             <div className="recomendations">
                 <div className="heading">
-                    <span>Fresh Recomendations</span>
+                    <span>Latest Posts</span>
                 </div>
                 <div className="cards">
                     {allPets.map((pets) => {

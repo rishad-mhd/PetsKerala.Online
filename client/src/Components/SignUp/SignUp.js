@@ -10,15 +10,39 @@ import './SignUp.css'
 
 function SignUp() {
     const navigate = useNavigate()
-    const [username, setUsername] = useState('')
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
-    const [password, setPassword] = useState('')
+    const [password1, setPassword1] = useState('')
+    const [password2, setPassword2] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const dispatch = useDispatch()
+    const [viewPassword, setViewPassword] = useState()
+    const userDetails = {
+        name,
+        email,
+        phone,
+        password1
+    }
 
-    const handleSubmit = () => { }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (password1 === password2) {
+            axios.post('users/auth/signup', userDetails)
+                .then((response) => {
+                    console.log(response.data);
+                    dispatch(setUser(response.data))
+                    navigate('/')
+                })
+                .catch((err) => {
+                    setError(err.response.data);
+                })
+        } else {
+            setError("Password don't match")
+            console.log('password dont match');
+        }
+    }
 
 
     const googleLogin = () => {
@@ -38,17 +62,18 @@ function SignUp() {
                 }
             }, 500)
         }
-    
+
     }
-    
+
     const fetchAuthUser = async () => {
-        const response = await axios.get('users/auth/user',{withCredentials:true})
-        .catch((err)=>{
-            console.log("not authenticated",err);
-            setError("Authentication failed")
-        })
-        if (response && response.data){
-            console.log("user",response.data);
+        const response = await axios.get('users/auth/user', { withCredentials: true })
+            .catch((err) => {
+                console.log("not authenticated", err);
+                setError("Authentication failed")
+                setLoading(false)
+            })
+        if (response && response.data) {
+            console.log("user", response.data);
             dispatch(setUser(response.data))
             navigate('/')
 
@@ -67,8 +92,8 @@ function SignUp() {
                         <input
                             className="input"
                             type="text"
-                            value={username}
-                            onChange={(e) => { setUsername(e.target.value) }}
+                            value={name}
+                            onChange={(e) => { setName(e.target.value) }}
                             id="fname"
                             name="name"
                             placeholder="John"
@@ -85,6 +110,7 @@ function SignUp() {
                             id="fname"
                             name="email"
                             placeholder="John@gmail.com"
+                            required
                         />
                         <br />
                         <label htmlFor="lname">Phone</label>
@@ -104,12 +130,30 @@ function SignUp() {
                         <br />
                         <input
                             className="input"
-                            type="password"
-                            value={password}
-                            onChange={(e) => { setPassword(e.target.value) }}
+                            type={viewPassword?"text":"password"}
+                            value={password1}
+                            onChange={(e) => { setPassword1(e.target.value) }}
                             id="lname"
                             name="password"
                             defaultValue="Doe"
+                            minLength="8"
+                            required
+                        />
+                        <i class="far fa-eye" onClick={() => {
+                            setViewPassword(viewPassword ? false : true)
+                        }}></i>
+                        <br />
+                        <label htmlFor="lname">Confirm Password</label>
+                        <br />
+                        <input
+                            className="input"
+                            type="password"
+                            value={password2}
+                            onChange={(e) => { setPassword2(e.target.value) }}
+                            id="lname"
+                            name="password"
+                            defaultValue="Doe"
+                            required
                         />
                         <br />
                         <br />

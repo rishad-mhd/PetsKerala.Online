@@ -29,10 +29,26 @@ function Header() {
         }}>
           <h4> petskerala.online</h4>
         </div>
-        <div className="placeSearch">
+        {/* <div className="placeSearch">
           <Search></Search>
           <input placeholder='India' type="text" />
           <Arrow></Arrow>
+        </div> */}
+       <div className="Home">
+         <td>Home</td><br/><br/>
+         <td>Gallery</td>
+         <td>Posts</td>
+         <td>Blog</td>
+
+       </div>
+        <div className="loginPage" >
+          <span className=''
+            onClick={() => {
+              { user == null ? navigate('/login') : console.log(user); }
+            }}>{user == null ? "Login" : user.name}</span>
+
+          <hr />
+          {user && <span className='logout' onClick={handleLogout}>Logout</span>}
         </div>
         <div className="productSearch">
           <div className="input">
@@ -42,17 +58,8 @@ function Header() {
             />
           </div>
           <div className="searchAction">
-            <Search color="#ffffff"></Search>
+            <Search color="#"></Search>
           </div>
-        </div>
-        <div className="loginPage" >
-          <span className=''
-            onClick={() => {
-              { user == null ? navigate('/login') : console.log(user); }
-            }}>{user == null ? "Login" : user.name}</span>
-
-          <hr />
-          {user && <span className='logout' onClick={handleLogout}>Logout</span>}
         </div>
         <div className="sellMenu" onClick={() => {
           navigate('/create')
@@ -63,6 +70,7 @@ function Header() {
             <span>Post</span>
           </div>
         </div>
+       
       </div>
     </div >
   )

@@ -7,8 +7,8 @@ function QuickMenu() {
         <div className="postParentDiv">
       <div className="moreView">
         <div className="heading">
-          <span>Quick Menu</span>
-          <span>View more</span>
+          <span>Featured Products</span>
+          {/* <span>View more</span> */}
         </div>
         <div className="cards">
           <div

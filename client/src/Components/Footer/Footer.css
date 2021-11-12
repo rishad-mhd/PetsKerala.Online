@@ -8,8 +8,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background: #111111;
-    color: rgb(236, 236, 236);
+    background: rgb(11,132,228);
+    /* background: linear-gradient(142deg, rgb(112, 180, 180) 0%, rgb(103, 62, 207) 45%, rgb(64, 2, 83) 100%); */
+    background: rgb(11,132,228);
+    background: linear-gradient(142deg, rgba(11, 130, 228, 0.158) 0%, rgba(83, 11, 228, 0.13) 45%, rgba(39, 6, 224, 0.24) 100%);
+
+    color: rgb(0, 0, 0);
     
     
   }
