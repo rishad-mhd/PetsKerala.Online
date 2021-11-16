@@ -2,17 +2,18 @@
     border: 0px solid black;
     width: 50%;
     padding: 30px;
-    position: absolute;
+    position: fixed;
+    z-index: 2;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    border-radius: 6px;
+    border-radius: 16px;
     text-align: left;
     font-size: 100%; 
-    color: aliceblue;
-    background: rgb(11,132,228);
-    background: linear-gradient(142deg, rgba(11,132,228,1) 0%, rgba(83,11,228,1) 45%, rgba(224,6,183,1) 100%);
+    color: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+    /* background: linear-gradient(142deg, rgba(11, 130, 228, 0.699) 0%, rgba(83, 11, 228, 0.479) 45%, rgba(224, 6, 184, 0.178) 100%); */
    
   }
   .h2
@@ -24,8 +25,9 @@
     border-left-color: transparent;
     border-right-color: transparent;
     outline-color: transparent;
-    background-color: rgba(255, 255, 255, 0.267);
+    background-color: rgba(43, 46, 48, 0.158);
     width: 12em;
+    border-radius: 18px;
     border:-0px;
     height: 30px;
     text-align: center;
@@ -33,15 +35,15 @@
   }
   
   .loginParentDiv button {
-    width: 12em;
+    width: 7em;
     height: 2em;
-    background-color: #ffffff73;
+    background-color: #ca0808e7;
     color: rgb(255, 255, 255);
-    font-weight: 400;
-    border-radius: 13px;
+    font-weight: 450;
+    border-radius: 18px;
     border:-0px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    /* font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif */
   }
   .loginParentDiv button:hover {
     background-color: rgba(8, 8, 8, 0.452);
@@ -56,7 +58,7 @@
     padding: 10px;
   }
   .loginParentDiv .google-auth a{
-    padding-left: 0;
+    padding-left: 10;
 
     width:12em;
   }
@@ -65,7 +67,7 @@
     width: auto;
     height: auto; 
     border-color: transparent; 
-    color: rgb(255, 255, 255);
+    color: rgb(9, 1, 58);
     font-weight: 400;
     border-radius: 10px;
     border: -0px;
@@ -75,10 +77,17 @@
   }
   .google-auth{
     padding-top: 1em;
+    /* padding-left: 28vw; */
+    /* float: left; */
+  
   }
   
   @media only screen and (max-width: 700px) {
       .loginParentDiv{
           width: 100%;
       }
+  }
+  .x-symbol{
+    float: right;
+    cursor: pointer;
   }

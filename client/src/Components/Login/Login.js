@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login.css'
 import Error from '../Error/Error'
 import Loading from '../Loading/Loading'
 import GoogleButton from 'react-google-button'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
-import { setUser } from '../../Redux/Actions/PetsAction'
+import { useDispatch, useSelector } from 'react-redux'
+import { navTologin, setUser } from '../../Redux/Actions/PetsAction'
 import { useNavigate } from 'react-router-dom'
 
 function Login() {
@@ -16,6 +16,9 @@ function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [viewPassword, setViewPassword] = useState()
+    const login = useSelector(state => state.navLogin.login)
+    let timer=null
+
 
     const googleLogin = () => {
         setLoading(true)
@@ -38,7 +41,7 @@ function Login() {
     }
 
     const fetchAuthUser = async () => {
-        const response = await axios.get('users/auth/user', { withCredentials: true })
+        const response = await axios.get('/users/auth/user', { withCredentials: true })
             .catch((err) => {
                 console.log("not authenticated", err);
                 setError("Authentication failed")
@@ -47,80 +50,86 @@ function Login() {
         if (response && response.data) {
             console.log("user", response.data);
             dispatch(setUser(response.data))
-            navigate('/')
 
 
         }
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('users/auth/login', { email, password }, { withCredentials: true })
+        axios.post('/users/auth/login', { email, password }, { withCredentials: true })
             .then((res) => {
                 console.log(res)
                 dispatch(setUser(res.data))
-                navigate('/')
             }).catch((err) => {
                 console.log(err.response.data.message)
                 setError(err.response.data.message)
             })
     }
 
+    useEffect(() => {
+        timer=setTimeout(() => {
+            dispatch(navTologin(true))
+        }, 5000);
+    }, [])
 
 
     return (
         <div>
-            <div className="loginParentDiv">
-                <h2>Login</h2>
-                <form onSubmit={handleSubmit}>
-                    {error && <Error value={error} />}
-                    <label htmlFor="fname">Email</label>
-                    <br />
-                    <input
-                        className="input"
-                        type="email"
-                        value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value)
-                        }}
-                        id="fname"
-                        name="email"
-                        defaultValue="John"
-                        required
-                    />
-                    <br />
-                    <label htmlFor="lname">Password</label>
-                    <br />
-                    <input
-                        className="input"
-                        type={viewPassword?"text":"password"}
-                        value={password}
-                        onChange={(e) => {
-                            setPassword(e.target.value)
-                        }}
-                        id="lname"
-                        name="password"
-                        defaultValue="Doe"
-                        required
-                    />
-                    <i class="far fa-eye" onClick={()=>{
-                        setViewPassword(viewPassword?false:true)
-                    } }></i>
-                    <br />
-                    <label htmlFor="lname">Forget Password ?</label>
-                    <br />
-                    <div className="g-signin2" data-width="300" data-height="200" data-longtitle="true" />
-                    <button>Login</button>
-                </form>
-                <div className="google-auth ">
-                    <GoogleButton onClick={googleLogin} type="light" />
-                </div>
-                <div className="signup">
-                    <a onClick={(e) => {
-                        navigate('/signup')
-                    }}>Signup !</a>
-                    {loading && <Loading />}
-                </div>
-            </div>
+            {login &&
+                <div className="loginParentDiv">
+                    <h3 className="x-symbol" onClick={() => {dispatch(navTologin(false));clearTimeout(timer)}}>✕</h3>
+                    <h2>Login</h2>
+
+                    <form onSubmit={handleSubmit}>
+                        {error && <Error value={error} />}
+                        <label htmlFor="fname">Email</label>
+                        <br />
+                        <input
+                            className="input"
+                            type="email"
+                            value={email}
+                            onChange={(e) => {
+                                setEmail(e.target.value)
+                            }}
+                            id="fname"
+                            name="email"
+                            defaultValue="John"
+                            required
+                        />
+                        <br />
+                        <label htmlFor="lname">Password</label>
+                        <br />
+                        <input
+                            className="input"
+                            type={viewPassword ? "text" : "password"}
+                            value={password}
+                            onChange={(e) => {
+                                setPassword(e.target.value)
+                            }}
+                            id="lname"
+                            name="password"
+                            defaultValue="Doe"
+                            required
+                        />
+                        <i class="far fa-eye" onClick={() => {
+                            setViewPassword(viewPassword ? false : true)
+                        }}></i>
+                        <br />
+                        <label htmlFor="lname">Forget Password ?</label>
+                        <br />
+                        <div className="g-signin2" data-width="300" data-height="200" data-longtitle="true" />
+                        <button>Login</button>
+                    </form>
+                    <div className="google-auth ">
+                        <GoogleButton onClick={googleLogin} type="light" />
+                    </div>
+                    <div className="signup">
+                        <a onClick={(e) => {
+                            navigate('/signup')
+                        }}>Signup !</a>
+                        {loading && <Loading />}
+                    </div>
+                </div>}
         </div>
     )
 }

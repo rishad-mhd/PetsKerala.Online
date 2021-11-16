@@ -5,14 +5,17 @@ import FreshRecommendation from '../Components/FreshRecommendation/FreshRecommen
 import Header from '../Components/Header/Header'
 import QuickMenu from '../Components/QuickMenu/QuickMenu'
 
+
 function Home() {
+    
+
     return (
         <div>
-            <Header/>
-            <Banner/>
-            <QuickMenu/>
-            <FreshRecommendation/>
-            <Footer/>
+            <Header />
+            <Banner />
+            <QuickMenu />
+            <FreshRecommendation />
+            <Footer />
         </div>
     )
 }

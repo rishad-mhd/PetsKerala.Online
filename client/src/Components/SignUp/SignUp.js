@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import GoogleButton from 'react-google-button'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { setUser } from '../../Redux/Actions/PetsAction'
+import { navTologin, setUser } from '../../Redux/Actions/PetsAction'
 import Error from '../Error/Error'
 import Loading from '../Loading/Loading'
 import './SignUp.css'
@@ -13,8 +13,8 @@ function SignUp() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
+    const [password, setPassword] = useState('')
     const [password1, setPassword1] = useState('')
-    const [password2, setPassword2] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const dispatch = useDispatch()
@@ -23,12 +23,13 @@ function SignUp() {
         name,
         email,
         phone,
-        password1
+        password
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (password1 === password2) {
+        if (password === password1) {
+            console.log('hi');
             axios.post('users/auth/signup', userDetails)
                 .then((response) => {
                     console.log(response.data);
@@ -128,28 +129,32 @@ function SignUp() {
                         <br />
                         <label htmlFor="lname">Password</label>
                         <br />
+                        <div className="confirm" style={{border:'2px'}}>
                         <input
                             className="input"
                             type={viewPassword?"text":"password"}
-                            value={password1}
-                            onChange={(e) => { setPassword1(e.target.value) }}
+                            value={password}
+                            onChange={(e) => { setPassword(e.target.value) }}
                             id="lname"
                             name="password"
                             defaultValue="Doe"
                             minLength="8"
                             required
                         />
-                        <i class="far fa-eye" onClick={() => {
+                        <div className="eye">
+                            <i class="far fa-eye" onClick={() => {
                             setViewPassword(viewPassword ? false : true)
                         }}></i>
+                        </div>
+                        </div>
                         <br />
                         <label htmlFor="lname">Confirm Password</label>
                         <br />
                         <input
                             className="input"
                             type="password"
-                            value={password2}
-                            onChange={(e) => { setPassword2(e.target.value) }}
+                            value={password1}
+                            onChange={(e) => { setPassword1(e.target.value) }}
                             id="lname"
                             name="password"
                             defaultValue="Doe"
@@ -164,7 +169,7 @@ function SignUp() {
                     </div>
                     <div className="Login"><a onClick={(e) => {
                         e.preventDefault()
-                        navigate('/login')
+                        dispatch(navTologin(true))
                     }}>Login !</a>
                         {loading && <Loading />}
                     </div>

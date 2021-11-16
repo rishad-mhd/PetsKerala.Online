@@ -9,7 +9,7 @@ function LoginSuccess() {
     },[])
     return (
         <div>
-            <h1>Thank You for Login</h1>
+            {/* <h1>Thank You for Login</h1> */}
         </div>
     )
 }

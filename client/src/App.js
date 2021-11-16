@@ -8,14 +8,15 @@ import SignUp from './Components/SignUp/SignUp';
 import Create from './Pages/Create';
 import Home from './Pages/Home';
 import LoginPage from './Pages/LoginPage';
+import ViewPost from './Pages/ViewPost';
 import { setUser } from './Redux/Actions/PetsAction'
 
 
 
 function App() {
   const dispatch = useDispatch()
-  const fetchUserdetails = async() => {
-    const response = await axios.get('users/auth/user', { withCredentials: true })
+  const fetchUserdetails = async () => {
+    const response = await axios.get('/users/auth/user', { withCredentials: true })
       .catch((err) => {
         console.log("not authenticated", err);
       })
@@ -35,7 +36,8 @@ function App() {
         <Route path="/create" element={<Create />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/login-success" element={<LoginSuccess />} />
-        <Route path="signup" element={<SignUp/>}/>
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/views/:id" element={<ViewPost />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,105 @@
+.Main{
+    border: 0px solid black;
+    width: 60%;
+    padding: 40px;
+    box-shadow: 1px 2px 12px 1px rgba(0,0,0,0.2);
+    border-radius: 18px;
+    margin-top: 10%;
+    margin-left:15%;
+    font-size: 100%; 
+    color: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+    height: 50%;
+
+}
+
+.centerDiv {
+    display: flex;
+    border: 0px solid black;
+    width: 40%;
+    padding: 40px;
+    /* position: absolute; */
+    /* z-index: 2; */
+    /* top: 40%;
+    left: 25%;
+    transform: translate(-50%, -29%); */
+    /* box-shadow: 1px 2px 12px 1px rgba(0,0,0,0.2); */
+    border-radius: 18px;
+    text-align: left;
+    /* align-items: center; */
+    font-size: 100%; 
+    color: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+}
+.centerDiv .input {
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    outline-color: transparent;
+    background-color: rgba(43, 46, 48, 0.158);
+    width: 15vw;
+    border-radius: 18px;
+    border:-0px;
+    height: 35px;
+    padding-left: 10px;
+    text-align: left;
+}
+.centerDiv .left{
+    margin-left: 10%;
+}
+.centerDiv .right{
+    margin-left: 60%;
+}
+
+.uploadBtn {
+    width: 7em;
+    height: 2em;
+    background-color: #ca0808e7;
+    color: rgb(255, 255, 255);
+    font-weight: 450;
+    border-radius: 18px;
+    border:-0px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.uploadBtn:hover {
+    background-color: rgba(255, 255, 255, 0.315);
+    color: #002f34;
+    /* border: 2px solid #002f34; */
+}
+
+.centerDiv .right .image{
+    max-width: 100%;
+}
+
+.centerDiv .right .image img{
+    max-width: 8em;
+}
+@media only screen and (max-width: 1000px) {
+    .centerDiv .right .image{
+        max-width: 15em;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .Main{
+        margin-left: 0;
+        width: 100%;
+    }
+    .centerDiv{
+        display: contents;
+    }
+    .centerDiv .left{
+        margin-left: 0%;
+    }
+    .centerDiv .right{
+        margin-left: 0%;
+    }
+    .centerDiv .right .image{
+        width: 100%;
+        max-width: 16em;
+        padding-top: 1em;
+        
+    }
+    .centerDiv .input {
+        width: 80%;
+    }
+}

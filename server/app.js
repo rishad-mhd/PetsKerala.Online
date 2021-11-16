@@ -12,6 +12,7 @@ var app = express();
 var db = require('./Config/Connection');
 var passport = require('passport');
 var session = require('express-session')
+var fileUpload = require('express-fileupload')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,9 +24,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
-app.use(session({ secret: "Key", cookie: { maxAge: 600000 }, }))
+app.use(session({ secret: "Key", cookie: { maxAge: 24*60*60*1000 }, }))
 app.use(passport.session())
 app.use(cors({origin:"http://localhost:3000",credentials:true}))
+app.use(fileUpload())
 
 
 

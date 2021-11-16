@@ -22,7 +22,14 @@ passport.use(new GoogleStrategy({
         return done(err, null)
     })
     if (user && user !== null) {
-        return done(null, user)
+        const userdetails = {
+            _id:user.insertedId || user._id,
+            name: profile.displayName,
+            email: profile.emails[0].value,
+            picture: profile.photos[0].value,
+            googleId: profile.id
+        }
+        return done(null, userdetails)
     }
 
 }))
