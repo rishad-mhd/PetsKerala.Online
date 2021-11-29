@@ -33,30 +33,49 @@ export const selectedPetReducer = (state = {}, { type, payload }) => {
     }
 }
 
-export const navCreateReducer =(state={},{type,payload})=>{
-    switch (type){
-        case ActionTypes.NAV_CREATE:
-            return {...state,create:payload}
-        default:
-            return state
-    }
-}
 
-
-export const navLoginReducer =(state={},{type,payload})=>{
-    switch (type){
+export const navLoginReducer = (state = {}, { type, payload }) => {
+    switch (type) {
         case ActionTypes.NAV_LOGIN:
-            return {...state,login:payload}
+            return { ...state, login: payload }
         default:
             return state
     }
 }
 
-export const searchReducer =(state=[],{type,payload})=>{
-    switch (type){
+export const searchReducer = (state = [], { type, payload }) => {
+    switch (type) {
         case ActionTypes.SEARCH:
-            return {...state,items:payload}
+            return { ...state, items: payload }
         default:
             return state
     }
 }
+
+export const categorisedPetsReducer = (state = [], { type, payload }) => {
+    switch (type) {
+        case ActionTypes.SET_CATEGORISED_PETS:
+            return { ...state, pets: payload }
+        default:
+            return state
+    }
+}
+
+export const userPostReducer = (state=[], { type, payload }) => {
+    switch (type) {
+        case ActionTypes.SET_USER_POST:
+            return { ...state, pets: payload }
+        default:
+            return state
+    }
+}
+
+export const imageCropReducer = (state=[], { type, payload }) => {
+    switch (type) {
+        case ActionTypes.SET_CROPPED_IMAGE:
+            return { ...state, image: payload }
+        default:
+            return state
+    }
+}
+

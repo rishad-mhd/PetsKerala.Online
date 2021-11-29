@@ -6,7 +6,7 @@ import SellButton from '../../assets/SellButton';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { navToCreate, navTologin, setUser, searchByname } from '../../Redux/Actions/PetsAction';
+import { navTologin, setUser, searchByname, removeSelectedPet } from '../../Redux/Actions/PetsAction';
 import Login from '../Login/Login';
 
 function Header() {
@@ -67,35 +67,22 @@ function Header() {
       })
   }
 
-  const handleClick = () => {
-    dispatch(navToCreate(true))
-    navigate('/create')
-  }
-
   return (
-    <div className="navbar navbar-light navbar-expand-lg headerParentDiv " style={offset > 100 ? { background: "white" } : { background: 'transparent' }}>
+    <div className="navbar navbar-light navbar-expand-lg headerParentDiv " style={{ background: "white" }}>
       <div className="headerChildDiv">
         <div className="brandName navbar-brand" onClick={() => {
           navigate('/')
         }}>
-          <h2 className="h3"> PETSO.</h2>
+          <h3 className="hf"> PETSO.</h3>
         </div>
-
-        {/* <div className="nav-item Home">
-          <a href="#" className="nav-link"><span>Home</span></a>
-          <a href="#" className="nav-link"><span>Gallery</span></a>
-          <a href="#" className="nav-link"><span>Posts</span></a>
-          <a href="#" className="nav-link"><span>Blog</span></a>
-          <a href="#" className="nav-link"><span>About</span></a>
-          </div> */}
-        <div class="collapse navbar-collapse" id="navbarText">
+        <div className="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
               <div className="nav-link productSearch">
                 <div className="input">
                   <input
                     type="text"
-                    placeholder="Search here for your favorite Pets"
+                    placeholder="Mecavo"
                     onKeyUp={searching}
                     onClick={() => {
                       setSearch(true)
@@ -117,25 +104,25 @@ function Header() {
               </div>
             </li>
             <li class="nav-item active">
-              <a href="#" className="nav-link"><span className={offset < 100 ? "" : "span-hover"}>Home</span></a>
+              <a href="#" className="nav-link"><span className= "span-hover">Home</span></a>
             </li>
             <li class="nav-item active">
-              <a href="#" className="nav-link"><span className={offset < 100 ? "" : "span-hover"}>Gallery</span></a>
+              <a href="#" className="nav-link"><span className="span-hover">Gallery</span></a>
             </li>
             <li class="nav-item active">
-              <a href="#" className="nav-link "><span className={offset < 100 ? "" : "span-hover"}>Posts</span></a>
+              <a href="#" className="nav-link "><span className="span-hover">Posts</span></a>
             </li>
             <li class="nav-item active">
-              <a href="#" className="nav-link"><span className={offset < 100 ? "" : "span-hover"}>Blog</span></a>
+              <a href="#" className="nav-link"><span className="span-hover">Blog</span></a>
             </li>
             <li class="nav-item active">
-              <a href="#" className="nav-link"><span className={offset < 100 ? "" : "span-hover"}>About</span></a>
+              <a href="#" className="nav-link"><span className="span-hover">About</span></a>
             </li>
             <li class="nav-item active">
               <div className="loginPage nav-link" >
                 <span className={offset < 100 ? "login-span" : "span-hover"}
                   onClick={() => {
-                    { user == null && dispatch(navTologin(true)) }
+                    { user == null ? dispatch(navTologin(true)):navigate('/user') }
                   }}>{user == null ? "Login" : user.name}</span>
 
                 {/* <hr /> */}
@@ -144,7 +131,10 @@ function Header() {
             </li>
 
             <li class="nav-item active">
-              <div className="sellMenu" onClick={handleClick} >
+              <div className="sellMenu" onClick={()=>{
+                dispatch(removeSelectedPet())
+                navigate('/create')
+                }} >
                 <SellButton></SellButton>
                 <div className="sellMenuContent">
                   <SellButtonPlus></SellButtonPlus>
@@ -154,18 +144,10 @@ function Header() {
             </li>
           </ul>
         </div>
-        {/* <div className="loginPage" >
-          <span className=''
-            onClick={() => {
-              { user == null ? navigate('/login') : console.log(user); }
-            }}>{user == null ? "Login" : user.name}</span>
-
-          <hr />
-          {user && <span className='logout' onClick={handleLogout}>Logout</span>}
-        </div> */}
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <div className="user-icon"
+        onClick={()=>{navigate('/user')}} >
+        <img src={user && user.image ? `/images/${user.image}` : user && user.photo ? user.photo : 'https://cahsi.utep.edu/wp-content/uploads/kisspng-computer-icons-user-clip-art-user-5abf13db5624e4.1771742215224718993529.png'} alt="" />
+        </div>
       </div>
       {!user && <Login />}
     </div >

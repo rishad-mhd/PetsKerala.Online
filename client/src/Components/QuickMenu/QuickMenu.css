@@ -1,109 +1,73 @@
-.moreView {
-    margin: 16px 16px 24px;
-    padding: 16px 16px 32px;
-    background-color: #ffffff;
-    border-radius: 14px;
-    margin-left: 7%;
-    margin-right: 7%;
-    /* box-shadow:  0px 3px 4px 4px rgb(0 0 0  / 5%); */
-  }
-  
-  .heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+body{
+  font-family: "Open Sans", sans-serif;
+} */
+.menuBar {
     width: 100%;
-    padding-top: 1em;
-    padding-bottom: 1em;
-  }
-  .heading :first-child {
-    font-size: 25px;
-    color: #002f34;
-    font-weight: 450;
-  }
-  
-  .heading :last-child {
-    box-shadow:  1px 1px 4px 1px rgb(0 0 0  / 6%);
-    padding: 6px;
-    border-radius: 10px;
-    background-color: rgb(245, 250, 255);
-  }
-  
-  .recommendations .cards {
-    display: flex;
-  }
-  
-  .moreView .cards {
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    width: 100%;
-    padding: 3px;
+    padding: 4px;
+    /* filter: blur(1.5rem); */
+    background-color:#c5f80c2c;
     
   }
+
+.menuBar .categoryMenu{
+  cursor: pointer;
+  display: flex;
+  padding: 10px;
+  padding-left: 24vw;
+  padding-right: 25vw;
+  justify-content: space-between;
+  overflow: auto;
   
-  .card {
-    margin-right: 15px;
-    padding: 13px;
-    max-width: 222px;
-    width: 222px;
-    height: 280px;
-    display: inline-block;
-    cursor: pointer;
-    box-shadow:  0px 0px 3px 3px rgb(0 0 0 / 5%);
-    border-radius: 12px;
-    background-color: rgb(255, 255, 255);
-    border: none;
+}
+
+
+.menuBar .categoryMenu span {
+  font-weight: 450;
+  padding:10px 20px 10px 20px;
+  /* background-color:#dbdbdb60; */
+  color: #424242;
+  border-radius:8px;
+  filter: none;
+  text-align: center;
+}
+
+
+.menuBar .categoryMenu span:hover{
+  background-color:#d3dbffc7;
+  color: rgb(0, 0, 0);
+  filter: blur(0);
+}
+
+@media only screen and (max-width: 1210px) {
+  .menuBar .categoryMenu{
+    padding-left: 0;
+    padding-right: 0;
   }
-  
-  .cards::-webkit-scrollbar {
-    width: 10px;
+  .menuBar .categoryMenu span {
+    width: 80%;
   }
-  
-  .cards::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 px rgba(216, 216, 216, 0.3); 
-    border-radius: 10px;
-  }
-  
-  .cards::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-  }
-  
-  .card .favorite {
-    display: flex;
-    justify-content: flex-end;
+}
+
+@media only screen and (max-width: 700px) {
+
+  .menuBar .categoryMenu span {
+    font-weight: 450;
     align-items: center;
-  }
-  
-  .card .image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .card .image img {
-    height: 100px;
-    max-width: 100%;
-    max-height: 100%;
-    min-height: 100%;
-    text-align: center;
-  }
-  .card .content .rate {
-    margin-top: 10px;
-    font-size: larger;
-   
-    font-weight: bold;
-  }
-  .card .content .kilometer {
-    font-size: medium;
-  }
-  .card .content .name {
     font-size: small;
+    padding:10px 8px 10px 15px;
+    
   }
-  .card .date {
-    display: flex;
-    justify-content: flex-end;
-    font-size: small;
+  .menuBar .categoryMenu .name{
+    padding:0px;
+    padding-right: 0em;
+    margin-top: -8px;
+    margin-bottom: -3px;
+    
+    
+    
   }
-  
+
+
+}

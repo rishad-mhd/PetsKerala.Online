@@ -4,6 +4,8 @@ const { isAuthenticateduser } = require('../Config/Auth');
 const UserHelpers = require('../Helpers/UserHelpers');
 var router = express.Router();
 require('../Config/passport')
+var fs = require('fs')
+var cron = require('node-cron')
 
 
 const successLoginUrl = "http://localhost:3000/login-success";
@@ -39,7 +41,19 @@ router.get('/google/callback',
 
 router.get('/auth/user', isAuthenticateduser, (req, res) => {
   console.log(req.user);
-  res.json({ name: req.user.name })
+  UserHelpers.getUserDetails(req.user._id).then((response) => {
+    user = {
+      id: response._id,
+      name: response.name,
+      email: response.email,
+      phone: response.phone,
+      photo: response.picture,
+      place: response.place,
+      phone: response.phone,
+      image: response.image,
+    }
+    res.send(user)
+  }).catch((err) => console.log(err))
 })
 
 router.get('/auth/user/logout', (req, res) => {
@@ -63,7 +77,12 @@ router.post('/auth/signup', (req, res) => {
       req.logIn(user, err => {
         if (err) throw err;
         console.log(req.user);
-        res.json({ name: req.user.name })
+        user = {
+          name: req.user.name,
+          email: req.user.email,
+          phone: req.user.phone
+        }
+        res.send(user)
       })
 
     }
@@ -78,7 +97,12 @@ router.post('/auth/login', (req, res,) => {
       req.logIn(response.user, err => {
         if (err) throw err;
         console.log(req.user);
-        res.json({ name: req.user.name })
+        user = {
+          name: req.user.name,
+          email: req.user.email,
+          phone: req.user.phone
+        }
+        res.send(user)
       })
     })
     .catch((err) => {
@@ -117,6 +141,18 @@ router.post('/createPost', (req, res) => {
         imageName.push(data.insertedId + imageFile.name)
       })
     }
+    let date = new Date()
+    cron.schedule('0 0 1 * *', () => {
+      let now = new Date();
+      if (now - date < 30 * 24 * 60 * 60 * 1000) {
+        return
+      }
+      imageName.forEach((obj) => {
+        fs.unlink(`./public/images/${obj}`, (err) => {
+          console.log(err);
+        })
+      })
+    });
 
     UserHelpers.updateImageData(imageName, data.insertedId)
     res.json({ message: "Post created" })
@@ -152,6 +188,124 @@ router.get('/selected-pet', (req, res) => {
     })
 })
 
+router.get('/category', (req, res) => {
+
+  UserHelpers.getCategorisedPets(req.query.item)
+    .then((response) => res.send(response))
+    .catch((err) => {
+      console.log(err);
+    })
+})
+
+router.get('/user-posts', (req, res) => {
+  UserHelpers.getUserPosts(req.user._id)
+    .then((response) => res.json(response))
+    .catch((err) => console.log(err))
+})
+
+router.post('/editPost', (req, res) => {
+  let postDetails = JSON.parse(req.body.postDetails)
+  console.log(postDetails);
+  console.log(req.files);
+  UserHelpers.getSelectedPet(postDetails.id)
+    .then((response) => {
+      if (req.files) {
+        response.image.forEach((obj) => {
+          fs.unlink(`./public/images/${obj}`, (err) => {
+            console.log(err);
+          })
+        })
+      }
+    })
+  UserHelpers.editPost(postDetails)
+    .then((response) => {
+      let imageName = []
+      let imageFile = req.files ? req.files.image : null
+      if (imageFile) {
+        if (Array.isArray(imageFile)) {
+          for (let i = 0; i < imageFile.length; i++) {
+            imageName.push(postDetails.id + imageFile[i].name)
+            console.log(imageFile[i]);
+            imageFile[i].mv(`./public/images/${postDetails.id + imageFile[i].name}`, (err) => {
+              if (err) {
+
+                res.status(500).send(err);
+
+              }
+            })
+          }
+        } else {
+          console.log('not array');
+          imageName.push(postDetails.id + imageFile.name)
+          imageFile.mv(`./public/images/${postDetails.id + imageFile.name}`, (err) => {
+            if (err) {
+
+              res.status(500).send(err);
+
+            }
+            imageName.push(postDetails.id + imageFile.name)
+          })
+        }
+        let date = new Date()
+        cron.schedule('0 0 1 * *', () => {
+          let now = new Date();
+          if (now - date < 30 * 24 * 60 * 60 * 1000) {
+            return
+          }
+          imageName.forEach((obj) => {
+            fs.unlink(`./public/images/${obj}`, (err) => {
+              console.log(err);
+            })
+          })
+        })
+        UserHelpers.updateImageData(imageName, postDetails.id)
+          .then((response) => console.log(response))
+          .catch((err) => console.log(err))
+      }
+      res.json({ message: "Post Edited" })
+    })
+    .catch((err) => console.log(err))
+})
+
+router.get('/delete-post', (req, res) => {
+  console.log(req.query);
+  UserHelpers.getSelectedPet(req.query.id)
+    .then((response) => {
+      response.image.forEach((obj) => {
+        fs.unlink(`./public/images/${obj}`, (err) => {
+          console.log(err);
+        })
+      })
+
+      UserHelpers.deletePost(req.query.id)
+        .then((response) => res.send(response))
+        .catch((err) => res.status(500).send(err))
+    })
+})
+
+router.put('/update-user', (req, res) => {
+  let userDetails = JSON.parse(req.body.userDetails)
+
+  console.log(userDetails);
+  console.log(req.files);
+  if (req.files) {
+    let image = req.files.image
+    image.mv(`./public/images/${userDetails.id + '.png'}`, (err) => {
+      if (err) {
+
+        res.status(500).send(err);
+
+      }
+    })
+  }
+
+  UserHelpers.updateUser(userDetails)
+    .then((response) => {
+      res.send(response)
+    })
+    .catch((err) => console.log(err))
+
+})
 
 
 module.exports = router;

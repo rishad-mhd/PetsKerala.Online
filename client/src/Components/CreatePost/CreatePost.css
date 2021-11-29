@@ -1,105 +1,159 @@
 .Main{
-  border: 0px solid black;
+    border: 0px solid black;
     width: 60%;
     padding: 40px;
-    position: fixed;
-    z-index: 2;
-    top: 50%;
-    left:50%;
-    transform: translate(-40%, -29%);
     box-shadow: 1px 2px 12px 1px rgba(0,0,0,0.2);
     border-radius: 18px;
-    text-align: center;
+    margin-top: 8%;
+    margin-left:20%;
     font-size: 100%; 
     color: rgb(0, 0, 0);
     background: rgb(255, 255, 255);
-    height: 500px;
- 
- 
-  }
+    height: 50%;
+
+}
+
 .centerDiv {
-  border: 0px solid black;
+    display: flex;
+    border: 0px solid black;
     width: 40%;
-    padding: 40px;
-    position: fixed;
-    z-index: 2;
-    top: 40%;
-    left: 40%;
-    transform: translate(-50%, -29%);
+    padding: 2px;
+    /* position: absolute; */
+    /* z-index: 2; */
+    /* top: 40%;
+    left: 25%;
+    transform: translate(-50%, -29%); */
     /* box-shadow: 1px 2px 12px 1px rgba(0,0,0,0.2); */
     border-radius: 18px;
     text-align: left;
-    align-items: center;
+    /* align-items: center; */
     font-size: 100%; 
     color: rgb(0, 0, 0);
     background: rgb(255, 255, 255);
- 
- 
-  }
-  .h2
-{
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center;
 }
-  .centerDiv .input {
+.centerDiv .input {
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    outline-color: transparent;
+    background-color: rgba(170, 170, 170, 0.158);
+    width: 15vw;
+    border-radius: 20px;
+    border:0px;
+    padding: 7px;
+    /* height: 38px; */
+    /* padding-left: 10px; */
+    text-align: left;
+}
+.centerDiv .left{
+    margin-left: 10%;
+}
+.centerDiv .right{
+    margin-left: 40%;
+    padding: 10px;
+}
+
+.uploadBtn {
+    width: 6em;
+    height: 2.3em;
+    background-color: #ca0808e7;
+    color: rgb(255, 255, 255);
+    font-weight: 450;
+    border-radius: 20px;
+    border:-0px;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.2);
+}
+.uploadBtn:hover {
+    background-color: rgba(0, 106, 206, 0.315);
+    color: #002f34;
+    /* border: 2px solid #002f34; */
+}
+
+.centerDiv .right .image{
+    max-width: 18vw;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 75px;
+
+}
+
+.centerDiv .right .image img{
+    max-width: 8em;
+}
+
+.textarea{
+    height: 8vw;
     border-top-color: transparent;
     border-left-color: transparent;
     border-right-color: transparent;
     outline-color: transparent;
     background-color: rgba(43, 46, 48, 0.158);
-    width: 15em;
-    border-radius: 18px;
+    width: 18vw;
+    border-radius:8px;
     border:-0px;
-    height: 35px;
     padding-left: 10px;
     text-align: left;
-  }
-  .input option{
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    outline-color: transparent;
-    background-color: rgba(255, 255, 255, 0);
-    color: rgb(0, 0, 0);
-    box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 2%);
-  }
-  .uploadBtn {
-    width: 7em;
-    height: 2em;
-    background-color: #ca0808e7;
-    color: rgb(255, 255, 255);
-    font-weight: 450;
-    border-radius: 18px;
-    border:-0px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  }
-  .uploadBtn:hover {
-    background-color: rgba(255, 255, 255, 0.315);
-    color: #002f34;
-    /* border: 2px solid #002f34; */
-  }
-  .centerDiv input fname {
-    box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 9%);
-    padding: 10px;
-    border-radius:22px;
-    background-color: rgba(255, 255, 255, 0.247);
-    border:0px;
-  }
-.right{
-  border: 0px solid black;
-  width: 40%;
-  padding: 40px;
-  position: fixed;
-  z-index: 2;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -40%);
-  /* box-shadow: 1px 2px 12px 1px rgba(0,0,0,0.2); */
-  border-radius: 18px;
-  text-align: center;
-  font-size: 100%; 
-  align-items: center;
-  color: rgb(0, 0, 0);
-  background: rgb(255, 255, 255);
+}
+
+@media only screen and (max-width: 1000px) {
+    .Ultra-main{
+        display: flex;
+        justify-content: center
+    }
+    .centerDiv .right .image{
+        max-width: 10em;
+    }
+    .Main{
+        margin-left:0;
+        width: 85%;
+    }
+    .centerDiv {
+        width: 50%;
+    }
+    .centerDiv .input {
+        width: 20vw;
+    }
+
+}
+
+@media only screen and (max-width: 700px) {
+    .Main{
+        padding: 13px;
+        max-width: 350px;
+        width: 350px;
+        display: inline-block;
+        cursor: pointer;
+        box-shadow:  0px 0px 3px 3px rgb(0 0 0 / 5%);
+        border-radius: 12px;
+        background-color: rgb(255, 255, 255);
+        border: none;
+        margin-bottom: 4em;
+    }
+    .centerDiv{
+        display: contents;
+    }
+    .centerDiv .left{
+        margin-left: 15%;
+    }
+    .centerDiv .right{
+        margin-left:15%;
+    }
+    .centerDiv .right .image{
+        width: 100%;
+        max-width: 16em;
+        padding-top: 1em;
+        
+    }
+    .centerDiv .input {
+        width: 80%;
+    }
+    .textarea{
+        height: 15vw;
+        width: 50vw;
+        /* border-radius:8px; */
+        /* border:-0px;
+        padding-left: 10px; */
+        /* text-align: left; */
+    }
 }

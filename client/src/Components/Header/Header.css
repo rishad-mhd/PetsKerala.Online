@@ -1,11 +1,8 @@
 .headerParentDiv {
-    padding: 10px;
-    /* background: rgb(11,132,228);
-    background: linear-gradient(142deg, rgba(11, 130, 228, 0.158) 0%, rgba(83, 11, 228, 0.13) 45%, rgba(39, 6, 224, 0.24) 100%); */
-
+    padding: 0.5px;
     position: fixed;
     width: 100vw;
-    z-index: 999;
+    z-index: 1;
     padding-left: 8%;
     padding-right: 8%;
   }
@@ -21,49 +18,28 @@
     cursor: pointer;
   }
   
-  /* .placeSearch {
-    width: 16em;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    padding: 0 8px;
-    /* border: 2px solid #002f34; */
-    /* border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.301);
-  }
-   */
-  /* .placeSearch::selection {
-    /* border-color: #23e5db;
-    outline-color: #23e5db; */
-    /* border-color: transparent;
-    outline-color: transparent;
-  } 
-   */
-  /* .placeSearch input {
-    border-color: transparent;
-    outline-color: transparent;
-  } */
  
   .productSearch {
-    width: 20em;
-    height: 48px;
-    /* border: 2px solid #002f34; */
+    width: 15em;
+    height:50px;
     border-radius: 4px;
     display: flex;
     align-items: center;
-    background-color: rgb(253, 253, 253);
+    background-color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-color: transparent;
     outline-color: transparent;
+    padding-bottom: 15px;
   }
   
   .productSearch .input {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     display: flex;
     background-color: none;
+    padding-bottom: 10px;
   }
   
   .productSearch .input input {
@@ -75,7 +51,7 @@
   
   .productSearch .searchAction {
     min-width: 39px;
-    height: 48px;
+    height: 45px;
     position: relative;
     display: flex;
     cursor: pointer;
@@ -99,12 +75,9 @@
   }
   
   .language span {
-    /* justify-content: space-between;
-    align-items: center; */
     font-size: 15px;
     white-space: normal;
     text-overflow: ellipsis;
-    /* font-weight: bolder; */
     margin-right: 5px;
     cursor: pointer;
     
@@ -118,12 +91,9 @@
   }
   
   .arrow span {
-    /* justify-content: space-between;
-    align-items: center; */
     font-size: 10px;
     white-space: normal;
     text-overflow: ellipsis;
-    /* font-weight: bolder; */
     margin-right: 5px;
     cursor: pointer;
     
@@ -143,7 +113,6 @@
     font-size: 16px;
     white-space: normal;
     text-overflow: ellipsis;
-    /* font-weight: bolder; */
     margin-right: 5px;
   }
   
@@ -187,13 +156,13 @@
   }
   
   .sellMenu {
+    margin-top: .4em;
     position: relative;
     cursor: pointer;
-    box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 30%);
+    /* box-shadow: 0px 0px 0px 3px rgba(238, 238, 238, 0.2),0px 0px 4px 0px rgba(0,0,0,0.19); */
     padding:0px;
     border-radius:38px; 
-    background: rgba(190, 213, 248, 0.986);
-    /* background: linear-gradient(142deg, rgba(5, 255, 243, 0.048) 0%, rgba(7, 250, 68, 0.096) 45%, rgba(8, 202, 34, 0.158) 100%); */
+    background: rgba(180, 238, 166, 0.363);
      
   }
   
@@ -230,9 +199,6 @@
     .productSearch{
       display: none;
     } 
-    /* .sellMenu {
-      display: none;
-    } */
   }
   
   .language-list{
@@ -269,10 +235,8 @@
   }
   .Home span{
     padding-left: 28px;
-    /* width: 5em; */
     font-size: 18px;
     font-weight: 450;
-    /* background-color: rgb(43, 156, 255); */
     
   }
   .Home a{
@@ -285,16 +249,17 @@
     position: relative;
     display: inline-block;
     top:3em;
-    right: 15em;
+    right: 10.5em;
   }
   
   .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f6f6f6;
-    min-width: 230px;
+    min-width: 180px;
     overflow: auto;
-    border: 1px solid #ddd;
+    border-radius: 8px;
+    /* border: 1px solid #ddd; */
     z-index: 1;
   }
   
@@ -314,19 +279,33 @@
   color: rgba(0,0,0,.9);
   padding-right: 0vw;
   margin-right: 2vw;
+  padding-top:11px;
 }
-@media only screen and (max-width: 1000px) {
-  .navbar-collapse{
-    background-color: white;
-  }
-  .show {
-    margin-top: 3em;
-    position: absolute;
-  }
+
+.user-icon{
+  display: none;
 }
+.user-icon img{
+  height: 3em;
+  border-radius: 100%;
+}
+
 .span-hover:hover{
-  color: rgb(0, 0, 0);
+  color: rgb(145, 0, 0);
 }
 .login-span:hover{
-  color: white;
+  color: rgb(167, 0, 0);
+}
+.nav-item .nav-link{
+  margin-top:3px; 
+}
+.hf{
+font-weight: 500;
+margin-top: .1em;
+}
+
+@media only screen and (max-width:700px) {
+  .user-icon{
+    display: block;
+  }
 }

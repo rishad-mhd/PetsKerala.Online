@@ -82,96 +82,110 @@ function SignUp() {
         }
     }
     return (
-        <div>
-            <div>
+        <div> 
+            <div className="div">
+                
                 <div className="signupParentDiv">
-                    <h2>Sign up</h2>
-                    {error && <Error value={error} />}
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="fname">Username</label>
-                        <br />
-                        <input
-                            className="input"
-                            type="text"
-                            value={name}
-                            onChange={(e) => { setName(e.target.value) }}
-                            id="fname"
-                            name="name"
-                            placeholder="John"
-                            required
-                        />
-                        <br />
-                        <label htmlFor="fname">Email</label>
-                        <br />
-                        <input
-                            className="input"
-                            type="email"
-                            value={email}
-                            onChange={(e) => { setEmail(e.target.value) }}
-                            id="fname"
-                            name="email"
-                            placeholder="John@gmail.com"
-                            required
-                        />
-                        <br />
-                        <label htmlFor="lname">Phone</label>
-                        <br />
-                        <input
-                            className="input"
-                            type="phone"
-                            id="lname"
-                            value={phone}
-                            onChange={(e) => { setPhone(e.target.value) }}
-                            name="phone"
-                            defaultValue="Doe"
-                            required
-                        />
-                        <br />
-                        <label htmlFor="lname">Password</label>
-                        <br />
-                        <div className="confirm" style={{border:'2px'}}>
-                        <input
-                            className="input"
-                            type={viewPassword?"text":"password"}
-                            value={password}
-                            onChange={(e) => { setPassword(e.target.value) }}
-                            id="lname"
-                            name="password"
-                            defaultValue="Doe"
-                            minLength="8"
-                            required
-                        />
-                        <div className="eye">
-                            <i class="far fa-eye" onClick={() => {
-                            setViewPassword(viewPassword ? false : true)
-                        }}></i>
+                    <div className="div1">
+                    <br/>
+                        <h2>Sign up</h2>
+                        {error && <Error value={error} />}
+                        <form onSubmit={handleSubmit}>
+                            <label htmlFor="fname">Username</label>
+                            <br />
+                            <input
+                                className="input"
+                                type="text"
+                                value={name}
+                                onChange={(e) => { setName(e.target.value) }}
+                                id="fname"
+                                name="name"
+                                placeholder="John"
+                                required
+                            />
+                            <br />
+                            <label htmlFor="fname">Email</label>
+                            <br />
+                            <input
+                                className="input"
+                                type="email"
+                                value={email}
+                                onChange={(e) => { setEmail(e.target.value) }}
+                                id="fname"
+                                name="email"
+                                placeholder="John@gmail.com"
+                                required
+                            />
+                            <br />
+                            <label htmlFor="lname">Phone</label>
+                            <br />
+                            <input
+                                className="input"
+                                type="phone"
+                                id="lname"
+                                value={phone}
+                                onChange={(e) => { setPhone(e.target.value) }}
+                                name="phone"
+                                defaultValue="Doe"
+                                required
+                            />
+                            <br />
+                            <label htmlFor="lname">Password</label>
+                            <br />
+                            <div className="confirm" style={{ border: '2px' }}>
+                                <input
+                                    className="input"
+                                    type={viewPassword ? "text" : "password"}
+                                    value={password}
+                                    onChange={(e) => { setPassword(e.target.value) }}
+                                    id="lname"
+                                    name="password"
+                                    defaultValue="Doe"
+                                    minLength="8"
+                                    required
+                                />
+                                {/* <div className="eye"> */}
+                                <i class="far fa-eye" onClick={() => {
+                                    setViewPassword(viewPassword ? false : true)
+                                }}></i>
+                                {/* </div> */}
+                            </div>
+                            <br />
+                            <label htmlFor="lname">Confirm Password</label>
+                            <br />
+                            <input
+                                className="input"
+                                type="password"
+                                value={password1}
+                                onChange={(e) => { setPassword1(e.target.value) }}
+                                id="lname"
+                                name="password"
+                                defaultValue="Doe"
+                                required
+                            />
+                            <br />
+                            <br />
+                            <div  className="button">
+                            <button>Signup</button>
+                            </div>
+                            <div className="Login"><a onClick={(e) => {
+                            e.preventDefault()
+                            dispatch(navTologin(true))
+                        }}>Login !</a>
+                            {/* {loading && <Loading />} */}
                         </div>
+                        </form>
+                        <div className="google-auth ">
+                            <GoogleButton onClick={googleLogin} type="light" />
                         </div>
-                        <br />
-                        <label htmlFor="lname">Confirm Password</label>
-                        <br />
-                        <input
-                            className="input"
-                            type="password"
-                            value={password1}
-                            onChange={(e) => { setPassword1(e.target.value) }}
-                            id="lname"
-                            name="password"
-                            defaultValue="Doe"
-                            required
-                        />
-                        <br />
-                        <br />
-                        <button>Signup</button>
-                    </form>
-                    <div className="google-auth ">
-                        <GoogleButton onClick={googleLogin} type="light" />
+                      
                     </div>
-                    <div className="Login"><a onClick={(e) => {
-                        e.preventDefault()
-                        dispatch(navTologin(true))
-                    }}>Login !</a>
-                        {loading && <Loading />}
+                    <div className="banner2">
+                        <img
+                            src="/images/5207222 - C.jpg"
+                            alt=""
+
+                        />
                     </div>
                 </div>
             </div>

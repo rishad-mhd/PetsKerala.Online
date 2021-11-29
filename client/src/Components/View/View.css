@@ -1,51 +1,184 @@
-.viewParentDiv {
-    padding-top: 4em;
-    display: flex;
-  }
-  .viewParentDiv .imageShowDiv {
-    padding: 16px;
-    width: 70vw;
-    text-align: center;
-  }
-  .viewParentDiv .imageShowDiv img {
-    width: auto;
-    /* height: 85vh; */
-  }
-  
-  .viewParentDiv .rightSection {
-    padding: 16px;
-    margin-top: 3em;
-    width: 30vw;
-  }
-  
-  .viewParentDiv .rightSection .productDetails :first-child {
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #002f34;
-    font-size: 34px;
-    line-height: 32px;
-    margin-bottom: 20px;
-  }
-  
-  .viewParentDiv .rightSection .productDetails {
-    border: 1px solid black;
-    padding: 6px;
-    border-radius: 6px;
-    margin-bottom: 2em;
-    width: 100%;
-  }
-  
-  .viewParentDiv .rightSection .contactDetails {
-    border: 1px solid black;
-    padding: 6px;
-    border-radius: 6px;
-  }
-  
-  .viewParentDiv .rightSection .contactDetails :first-child {
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: 700;
-    color: #002f34;
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: Roboto;
     font-weight: 400;
-    padding: 0;
-  }
+    color: rgb(32, 32, 32);
+}
+
+.card1 {
+    
+    width: 80%;
+    height: 500px;
+    /* position: absolute; */
+    background: white;
+    margin: 0 auto;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    transition: all 0.3s;
+    border-radius: 18px;
+}
+    
+.card1:hover {
+
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+
+.card1 nav {
+
+width: 100%;
+color: #727272;
+text-transform: uppercase;
+padding: 20px;
+border-bottom: 2px solid #efefef;
+font-size: 12px;
+}
+.card1 .heart1 {
+
+height: 24px;
+width: 24px;
+float: right;
+margin-top: -3px;
+transition: all 0.3s ease;
+cursor: pointer;
+}
+ .heart1:hover {
+    
+    fill: red;
+    
+}
+
+.card1 .arrow1 {
+
+float: left;
+height: 15px;
+width: 15px;
+margin-right: 10px;
+
+}
+
+.photoheight{
+    min-height: 18em;
+}
+
+.photo {
+
+padding: 30px;
+width: 45%;
+text-align: center;
+
+float: left;
+}
+.photo img { 
+max-height: 18em; 
+border-radius: 5px;
+}
+
+
+
+.description {
+
+padding: 30px;
+float: left;
+width: 55%;
+border-left: 2px solid #efefef;
+}
+.description h1 {
+    color: #515151;
+    font-weight: 300;
+    padding-top: 15px;
+    margin: 0;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.description h2 {
+color: #515151;
+margin: 0;
+text-transform: uppercase;
+font-weight: 500;
+}
+
+.description h4 { 
+    margin: 0;
+    color: #727272;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px
+}
+
+.description p { 
+    font-size: 12px; 
+    line-height: 20px;
+    color: #727272;
+    padding: 20px 0;
+    margin: 0;
+}
+
+.description button {
+
+    outline: 0;
+    border: 0;
+    background: none;
+    border: 1px solid #d9d9d9;
+    padding: 8px 0px;
+    margin-bottom: 30px;
+    color: #515151;
+    text-transform: uppercase;
+    width: 125px;
+    font-family: inherit;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+.description button:hover {
+    
+    /* // background: darken(white, 2%); */
+    border: 1px solid #aedaa6;
+    color: #aedaa6;
+    cursor: pointer;
+    
+    }
+
+    .image-multiple{
+        height: 44px;
+        margin-top: 1.8em;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        margin-left: 10%;
+        
+        margin-right: 10%;
+    }
+
+    .image-multiple::-webkit-scrollbar {
+        height: 6px;
+      }
+      .image-multiple::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background: rgba(0,0,0,0.1);
+      }
+      .image-multiple::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        background: rgba(0,0,0,0.2);
+      }
+      .image-multiple::-webkit-scrollbar-thumb:hover{
+          background: rgba(0,0,0,0.4);
+      }
+      .image-multiple::-webkit-scrollbar-thumb:active{
+          background: rgba(0,0,0,.9);
+      }
+      @media only screen and (max-width: 700px) {
+          .description{
+              float: none;
+              width: 100%;
+          }
+          .photo{
+              width: 100%;
+            
+          }
+      }

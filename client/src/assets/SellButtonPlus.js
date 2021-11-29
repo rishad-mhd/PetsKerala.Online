@@ -3,8 +3,8 @@ import React  from 'react'
  export default function SellButtonPlus(params) {
     return(
         <svg
-                width="16px"
-                height="16px"
+                width="14px"
+                height="14px"
                 viewBox="0 0 1024 1024"
                 data-aut-id="icon"
                 fillRule="evenodd"

@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux'
-import { navCreateReducer, navLoginReducer, petsReducer, searchReducer, selectedPetReducer, userReducer } from './PetsReducer'
+import { categorisedPetsReducer, editPostReducer, imageCropReducer, navLoginReducer, petsReducer, searchReducer, selectedPetReducer, userPostReducer, userReducer } from './PetsReducer'
 
 const reducers = combineReducers({
     allPets: petsReducer,
     user: userReducer,
     selectedPet: selectedPetReducer,
-    navCreate: navCreateReducer,
     navLogin: navLoginReducer,
-    search: searchReducer
+    categorisedPets: categorisedPetsReducer,
+    search: searchReducer,
+    userPost: userPostReducer,
+    croppedImage: imageCropReducer,
 
 })
 

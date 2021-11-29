@@ -30,28 +30,25 @@ function FreshRecommendation() {
                     <span>Latest Posts</span>
                 </div>
                 <div className="cards">
-                    {allPets.map((pets) => {
-                        const { price, category, name, description, _id, image } = pets
+                    {allPets && allPets.map((pets) => {
+                        const { price, category, name, place, _id, image } = pets
                         return (
                             <div
                                 className="card"
                                 key={_id}
                                 onClick={() => navigate(`/views/${_id}`)}
                             >
-                                <div className="favorite">
-                                    <Heart></Heart>
-                                </div>
                                 <div className="image">
-                                    <img src={`http://localhost:3001/images/${image[0]}`} alt="Pet Image" />
+                                    <img src={`/images/${image[0]}`} alt="Pet Image" />
                                 </div>
                                 <div className="content">
-                                    <p className="rate">&#x20B9; {price}</p>
-                                    <span className="kilometer">{category}</span>
-                                    <p className="name">{name}</p>
+                                <span className="pname">{name}</span><br/>    
+                                <span className="categoryname">{place}</span><br/>
+                                <span className="rate">&#x20B9; {price}</span><br/>
+                                <div className="place">
+                                <span >{category}</span><br/>  
                                 </div>
-                                <div className="date">
-                                    <span>{description}</span>
-                                </div>
+                            </div>
                             </div>
                         )
                     })}

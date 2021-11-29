@@ -1,0 +1,124 @@
+
+
+.UserParentDiv{
+    
+    padding-top: 10em;
+    display: flex;
+    justify-content: center;
+}
+
+.UserChildDiv{
+    border-radius: 20px;
+    padding-bottom: 5em;
+    width: 80%;
+    box-shadow: 0px 0px 0 1px rgba(191, 207, 197, 0.2),0 2px 10px 0 rgba(0,0,0,0.19);
+    margin-bottom: 2em;
+}
+
+.UserParentDiv .UserChildDiv .user-data{
+    display: flex;
+
+}
+
+.UserParentDiv .UserChildDiv .user-image{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.UserParentDiv .UserChildDiv .userImageName{
+    box-shadow: 0px 0px 0 1px rgba(191, 207, 197, 0.2),0 2px 10px 0 rgba(0,0,0,0.19);
+    width: 18em;
+    height: 18em;
+    margin-left: 2em;
+    margin-top: 2em;
+    border-radius: 20px;
+    padding: 2em;
+}
+.UserParentDiv .UserChildDiv .user-image img{
+    height: 10em;
+    border-radius: 100%;
+}
+
+.UserParentDiv .UserChildDiv .user-name{
+    /* width: 20em; */
+    display: flex;
+    justify-content: center;
+}
+
+.UserParentDiv .UserChildDiv .user-name span{
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.UserParentDiv .UserChildDiv .user-details{
+    margin: 2em;
+    width: 80%;
+    box-shadow: 0px 0px 0 1px rgba(191, 207, 197, 0.2),0 2px 10px 0 rgba(0,0,0,0.19);
+    padding: 3em;
+    height: 18em;
+    font-weight: 400;
+    border-radius: 20px;
+
+}
+
+.UserParentDiv .UserChildDiv .user-details .user-details-inner{
+    display: grid;
+    height: 10em;
+    max-width: 31em;
+   
+    
+}
+
+.UserParentDiv .UserChildDiv .user-posts{
+    padding: 0em;
+   
+}
+
+.UserParentDiv .UserChildDiv .user-post{
+    margin: 1em;
+    width: 13em;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 0px 0 1px rgba(191, 207, 197, 0.2),0 2px 10px 0 rgba(0,0,0,0.19);
+    
+}
+
+.UserParentDiv .UserChildDiv .user-post .post-inner{
+    padding: .4em;
+    height: 4em;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.UserParentDiv .UserChildDiv .user-post .post-inner img{
+    max-height:3em;
+    max-width:6em;
+    border-radius: 5px;
+
+}
+.UserParentDiv .UserChildDiv .user-post .post-inner span{
+    padding-left: .7em;
+    overflow: hidden;
+}
+
+@media only screen and (max-width:700px){
+    .UserParentDiv .UserChildDiv .user-data {
+        display: block ;
+    }
+
+    .UserParentDiv .UserChildDiv{
+        width: auto;
+    }
+
+    .UserParentDiv .UserChildDiv .user-posts {
+        display: grid;
+        justify-content: center;
+    }
+
+    .UserParentDiv .UserChildDiv .user-post{
+        width: 17em;
+    }
+} 

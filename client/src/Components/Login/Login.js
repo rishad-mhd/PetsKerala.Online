@@ -125,12 +125,15 @@ function Login() {
                     </div>
                     <div className="signup">
                         <a onClick={(e) => {
-                            navigate('/signup')
+                           dispatch(navTologin(false))
+                           navigate('/signup')
                         }}>Signup !</a>
                         {loading && <Loading />}
                     </div>
-                </div>}
-        </div>
+                </div> }
+                </div>
+       
+      
     )
 }
 

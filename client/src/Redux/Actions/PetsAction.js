@@ -27,13 +27,6 @@ export const removeSelectedPet = (pet) => {
     }
 }
 
-export const navToCreate = (create) => {
-    return{
-        type:ActionTypes.NAV_CREATE,
-        payload:create
-    }
-}
-
 export const navTologin = (login) => {
     return{
         type:ActionTypes.NAV_LOGIN,
@@ -47,3 +40,25 @@ export const searchByname = (filteredItems) => {
         payload:filteredItems
     }
 }
+
+export const setCategorisedPets = (Pets) => {
+    return {
+        type: ActionTypes.SET_CATEGORISED_PETS,
+        payload: Pets
+    }
+}
+
+export const setUserPost = (Pets) => {
+    return {
+        type: ActionTypes.SET_USER_POST,
+        payload: Pets
+    }
+}
+
+export const setCroppedImage = (image) => {
+    return {
+        type: ActionTypes.SET_CROPPED_IMAGE,
+        payload: image
+    }
+}
+
