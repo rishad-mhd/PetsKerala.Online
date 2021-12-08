@@ -182,8 +182,8 @@ function SignUp() {
                     </div>
                     <div className="banner2">
                         <img
-                            src="/images/5207222 - C.jpg"
-                            alt=""
+                            src="/images/5207222-C.jpg"
+                            alt="image"
 
                         />
                     </div>

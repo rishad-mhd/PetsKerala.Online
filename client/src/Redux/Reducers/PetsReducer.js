@@ -61,7 +61,7 @@ export const categorisedPetsReducer = (state = [], { type, payload }) => {
     }
 }
 
-export const userPostReducer = (state=[], { type, payload }) => {
+export const userPostReducer = (state = [], { type, payload }) => {
     switch (type) {
         case ActionTypes.SET_USER_POST:
             return { ...state, pets: payload }
@@ -70,9 +70,22 @@ export const userPostReducer = (state=[], { type, payload }) => {
     }
 }
 
-export const imageCropReducer = (state=[], { type, payload }) => {
+export const limitReducer = (state = { flimit: 12, climit: 12, glimit:12 }, { type, payload }) => {
     switch (type) {
-        case ActionTypes.SET_CROPPED_IMAGE:
+        case ActionTypes.SET_F_LIMIt:
+            return { ...state, flimit: payload }
+        case ActionTypes.SET_C_LIMIt:
+            return { ...state, climit: payload }
+        case ActionTypes.SET_G_LIMIt:
+            return { ...state, glimit: payload }
+        default:
+            return state
+    }
+}
+
+export const userImageReducer = (state = {}, { type, payload }) => {
+    switch (type) {
+        case ActionTypes.SET_USER_IMAGE:
             return { ...state, image: payload }
         default:
             return state

@@ -20,12 +20,7 @@ function CreatePost() {
     const navigate = useNavigate()
     const id = useParams()
     const dispatch = useDispatch()
-
-
-    useEffect(() => {
-        setPhone(user && user.phone)
-        setPlace(user && user.place)
-    }, [user])
+    const [progress, setProgress] = useState()
 
     useEffect(() => {
         axios.get('/users/selected-pet', { params: id })
@@ -56,6 +51,14 @@ function CreatePost() {
         phone,
         place
     }
+    const options = {
+        onUploadProgress: (progressEvent) => {
+            const { loaded, total } = progressEvent;
+            let percent = Math.floor((loaded * 100) / total)
+            console.log(percent,"%",loaded,"b",total);
+            setProgress(percent)
+        }
+    }
     const handleClick = (e) => {
         e.preventDefault()
         if (!user) {
@@ -65,7 +68,7 @@ function CreatePost() {
                 let formData = new FormData()
                 image.forEach((file) => formData.append("image", file))
                 formData.append("postDetails", JSON.stringify(postDetails))
-                axios.post(id.id ? '/users/editPost' : '/users/createPost', formData)
+                axios.post(id.id ? '/users/editPost' : '/users/createPost', formData, options)
                     .then(res => navigate(id.id ? '/user' : '/'))
                     .catch(err => {
                         setError(err)
@@ -84,19 +87,21 @@ function CreatePost() {
             <br />
             <div className="Ultra-main">
                 <div className="Main">
-
+                    {progress && <div class="progress">
+                        <div className="progress-bar" role="progressbar" style={{width: `${progress}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{progress}%</div>
+                    </div>}
                     <center> <h2>{id.id ? "Edit" : "Sale"} Post</h2></center>
                     <form id="form" action="" onSubmit={handleClick}>
                         <div className="centerDiv">
                             <div className='left'>
                                 {error && <Error value={error} />}
-                                <label htmlFor="fname">Name</label>
+                                <label htmlFor="name">Name</label>
                                 <br />
                                 <input
                                     className="input"
                                     type="text"
                                     value={name}
-                                    id="fname"
+                                    id="name"
                                     name="Name"
                                     placeholder="dog"
                                     onChange={(e) => {
@@ -105,12 +110,12 @@ function CreatePost() {
                                     required
                                 />
                                 <br />
-                                <label htmlFor="fname">Category</label>
+                                <label htmlFor="category">Category</label>
                                 <br />
                                 <select
                                     className="input"
                                     value={category}
-                                    id="fname"
+                                    id="category"
                                     name="category"
                                     onChange={(e) => {
                                         setCategory(e.target.value)
@@ -129,13 +134,13 @@ function CreatePost() {
                                     <option value="Other">Other</option>
                                 </select>
                                 <br />
-                                <label htmlFor="fname">Price</label>
+                                <label htmlFor="price">Price</label>
                                 <br />
                                 <input
                                     className="input"
-                                    type="text"
+                                    type="number"
                                     value={price}
-                                    id="fname"
+                                    id="price"
                                     name="Price"
                                     placeholder="₹1000"
                                     onChange={(e) => {
@@ -143,13 +148,13 @@ function CreatePost() {
                                     }}
                                     required
                                 />
-                                <label htmlFor="fname">Mobile Number</label>
+                                <label htmlFor="phone">Mobile Number</label>
                                 <br />
                                 <input
                                     className="input"
-                                    type="text"
+                                    type="tel"
                                     value={phone}
-                                    id="Description"
+                                    id="phone"
                                     name="Name"
                                     placeholder="+91"
                                     onChange={(e) => {
@@ -159,13 +164,13 @@ function CreatePost() {
                                 />
 
                                 <br />
-                                <label htmlFor="fname">Place</label>
+                                <label htmlFor="place">Place</label>
                                 <br />
                                 <input
                                     className="input"
                                     type="text"
                                     value={place}
-                                    id="fname"
+                                    id="place"
                                     name="Price"
                                     placeholder="Thrissur"
                                     onChange={(e) => {
@@ -176,7 +181,7 @@ function CreatePost() {
                             </div>
                             <div className="right">
                                 <br />
-                                <input id="image" onChange={(e) => {
+                                <input id="image" style={{    width: "13em"}} onChange={(e) => {
 
                                     console.log(e.target.files);
                                     setImage(Array.from(e.target.files))
@@ -189,7 +194,7 @@ function CreatePost() {
                                     })}
                                 </div>
                                 <br />
-                                <label htmlFor="fname">Description</label>
+                                <label htmlFor="Description">Description</label>
                                 <br />
                                 <textarea
                                     className="textarea"

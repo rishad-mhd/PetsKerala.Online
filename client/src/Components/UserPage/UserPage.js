@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import './UserPage.css'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
-import { setUserPost } from '../../Redux/Actions/PetsAction'
+import { setUser, setUserImage, setUserPost } from '../../Redux/Actions/PetsAction'
 import { useNavigate } from 'react-router'
 import ImageCropper from '../ImageCropper/ImageCropper'
 
 function UserPage() {
     const user = useSelector(state => state.user.user)
     const pets = useSelector(state => state.userPost.pets)
+    const image = useSelector(state => state.userImage.image)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [delet, setDelete] = useState(false)
@@ -16,7 +17,7 @@ function UserPage() {
     const [name, setName] = useState()
     const [phone, setPhone] = useState()
     const [place, setPlace] = useState()
-    const image = useSelector(state => state.croppedImage.image)
+    const [loading, setLoading] = useState()
 
     useEffect(() => {
         axios.get('/users/user-posts')
@@ -25,6 +26,7 @@ function UserPage() {
         delet && setDelete(false)
     }, [delet])
 
+
     const deletePost = (id) => {
         console.log(id);
         if (window.confirm('Do you want to delete')) {
@@ -32,6 +34,26 @@ function UserPage() {
                 .then((res) => setDelete(true))
         }
     }
+
+    const fetchAuthUser = async () => {
+        const response = await axios.get('/users/auth/user')
+            .catch((err) => {
+                console.log("not authenticated", err);
+            })
+        if (response && response.data) {
+            console.log("user", response.data);
+            dispatch(setUser(response.data))
+            { response.data.image && dispatch(setUserImage({ image: response.data.image, imageHash: Date.now() })) }
+            setEdit(false)
+
+        }
+    }
+
+    useEffect(() => {
+        if (!image) {
+            fetchAuthUser()
+        }
+    }, [image])
 
     const updateUser = () => {
         const userDetails = {
@@ -42,79 +64,101 @@ function UserPage() {
         }
         console.log('hi');
         let formdata = new FormData()
-        if (image) {
-            formdata.append('image', image)
-        }
         formdata.append('userDetails', JSON.stringify(userDetails))
         axios.put('/users/update-user', formdata)
             .then((res) => {
-                window.location.reload()
+                // window.location.reload()
                 console.log(res);
+                fetchAuthUser()
             }).catch((err) => console.log(err))
     }
+
+    const handleLogout = () => {
+        axios.get('/users/auth/user/logout')
+            .then((res) => {
+                console.log(res.data)
+                dispatch(setUser(null))
+                dispatch(setUserImage(null))
+                navigate('/')
+            })
+    }
+
+
+
     return (
         <div className="UserParentDiv">
             <div className="UserChildDiv">
-                <div className="user-data">
-                    {/* <form action="" onSubmit={(e)=>e.preventDefault()}> */}
+                <div className={`user-data  ${pets && !pets[0] && "flex"}`}>
                     <div className="userImageName">
+                        <ImageCropper value={{ aspect: 16 / 16 }} load={setLoading} />
                         <div className="user-image">
-                            <img src={user && user.image ? `/images/${user.image}` : user && user.photo ? user.photo : 'https://cahsi.utep.edu/wp-content/uploads/kisspng-computer-icons-user-clip-art-user-5abf13db5624e4.1771742215224718993529.png'} alt="" />
+                            {loading && <div class="loader-1 center"><span></span></div>}
+                            <img src={user && image ? `/userImages/${image.image}?${image.imageHash}` : user && user.photo ? user.photo : 'https://cahsi.utep.edu/wp-content/uploads/kisspng-computer-icons-user-clip-art-user-5abf13db5624e4.1771742215224718993529.png'} alt="" />
                         </div>
-                        {edit && <ImageCropper value={{ aspect: 16 / 16 }} />}
+
                         <div className="user-name">
-                            <span>{user && user.name}</span>
+                            <span>{user && user.name.indexOf(' ') <= 0 ? user.name : user && user.name.split(' ').slice(0, -1).join(' ')}</span>
                         </div>
                     </div>
                     <div className="user-details">
                         <div className="user-details-inner">
                             <div>
-                                <label htmlFor="">User Name : </label>
-                                {!edit && <span>{user && user.name}</span>}
-                                {edit && <input type="text"
-                                    defaultValue={user && user.name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    value={name} />}
-                            </div>
-                            <div>
-                                <label htmlFor="">Email : </label>
-                                <span>{user && user.email}</span>
-                            </div>
-                            <div>
-                                <label htmlFor="">Phone : </label>
-                                {!edit && <span>{user && user.phone}</span>}
-                                {edit && <input type="text"
-                                    value={phone}
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    defaultValue={user && user.phone} />}
-                            </div>
-                            <div>
-                                <label htmlFor="">Place : </label>
-                                {!edit && <span>{user && user.place?user.place:"null" }</span>}
-                                {edit && <input type="text"
-                                    value={place}
-                                    onChange={(e) => setPlace(e.target.value)}
-                                    defaultValue={user && user.place} />}
+                                <i class="fas fa-user-edit" style={{ cursor: 'pointer', float: 'right' }}
+                                    onClick={() => setEdit(edit ? false : true)}></i>
+                                <div className="right">
+                                    <span className="label">Full Name </span><br />
+                                    {!edit && <p className="input" style={{ padding: '.3em' }}>{user && user.name}</p>}
+                                    {edit && <input type="text"
+                                        className="input"
+                                        defaultValue={user && user.name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        value={name} />}
 
-                            </div>
-                            {pets && <div>
-                                <label htmlFor="">Posts  :</label>
-                                <span>{pets.length} posts</span>
-                            </div>}
-                        </div>
-                        <div style={{
+                                    <div>
+                                        <span>Email  </span><br />
+                                        <p className="input" style={{ padding: '.3em' }}>{user && user.email}</p>
+                                    </div>
+                                    <div>
+                                        <span>Phone  </span><br />
+                                        {!edit && <p className="input" style={{ padding: '.3em' }}>{user && user.phone}</p>}
+                                        {edit && <input type="text"
+                                            className="input"
+                                            value={phone}
+                                            onChange={(e) => setPhone(e.target.value)}
+                                            defaultValue={user && user.phone} />}
+                                    </div>
+                                </div>
+                                <div className="left">
+                                    <div>
+                                        <span>Place  </span> <br />
+                                        {!edit && <p className="input" style={{ padding: '.3em' }}>{user && user.place}</p>}
+                                        {edit && <input type="text"
+                                            className="input"
+                                            value={place}
+                                            onChange={(e) => setPlace(e.target.value)}
+                                            defaultValue={user && user.place} />}
 
-                        }}>
-                            <i class="fas fa-user-edit" style={{ cursor: 'pointer' }}
-                                onClick={() => setEdit(edit ? false : true)}></i>
+                                    </div>
+
+
+
+                                    {pets && <div>
+                                        <span>Posts </span><br />
+                                        <p className="input" style={{ padding: '.3em' }}>{pets.length} posts</p>
+                                    </div>}
+
+                                    <div>
+                                        {edit && <button type='submit' className="btn btn-outline-primary" onClick={updateUser}>Update</button>}
+                                    </div>
+                                    {!edit && <span className="btn btn-outline-danger" style={{ cursor: 'pointer' }} onClick={handleLogout}>logout</span>}
+                                </div>
+                            </div>
                         </div>
-                        {edit && <button type='submit' className="btn btn-outline-primary" onClick={updateUser}>Update</button>}
                     </div>
-                    {/* </form> */}
                 </div>
                 <div>
                     < div className="user-posts" >
-                        {pets && pets[0] ? <center><h3>Your Post</h3></center> : ""}
+                        {pets && pets[0] ? <center><h3 style={{fontWeight:'400'}}>Your Post</h3></center> : ""}
                         {pets && pets.map((obj) => {
                             return <div key={obj._id} className="user-post ">
                                 <div style={{
@@ -123,9 +167,9 @@ function UserPage() {
                                     cursor: 'pointer'
                                 }}>
                                     <div style={{ marginRight: ".5em" }}>
-                                        <i class="fas fa-edit" onClick={() => navigate(`/create/${obj._id}`)}
-                                            style={{ marginRight: ".5em" }}></i>
-                                        <i class="fas fa-trash" onClick={() => deletePost(obj._id)} style={{ color: 'red' }}></i>
+                                        <img class="iconss" src="/images/document-editor.png" onClick={() => navigate(`/create/${obj._id}`)}
+                                            style={{ marginRight: ".5em" }} />
+                                        <img class="iconss2" src="/images/remove.png" onClick={() => deletePost(obj._id)} style={{ color: 'red' }} />
                                     </div>
                                 </div>
                                 <div className="post-inner">

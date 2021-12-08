@@ -14,6 +14,13 @@ function Banner() {
                         
                     />
                 </div>
+                <div className="banner3"><br/>
+                    <img
+                        src="/images/gouldian.jpg"
+                        alt=""
+                        
+                    />
+                </div>
             </div>
         </div>
     )

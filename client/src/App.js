@@ -3,10 +3,13 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css';
+import About from './Components/About/About';
 import BottomNav from './Components/BottomNav/BottomNav';
 import Category from './Components/Category/Category';
+import Gallery from './Components/Gallery/Gallery';
 import Header from './Components/Header/Header';
 import LoginSuccess from './Components/LoginSucces/LoginSuccess';
+import Search from './Components/Search/Search';
 import SignUp from './Components/SignUp/SignUp';
 import Create from './Pages/Create';
 import Home from './Pages/Home';
@@ -45,6 +48,10 @@ function App() {
         <Route path="/views/:id" element={<ViewPost />} />
         <Route path="/category/:item" element={<Category />} />
         <Route path="/user" element={<User />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/about" element={<About />} />
+        
       </Routes>
       <BottomNav/>
     </BrowserRouter>

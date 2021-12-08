@@ -126,9 +126,9 @@ module.exports = {
             resolve(pet)
         })
     },
-    getCategorisedPets: (item) => {
+    getCategorisedPets: (value) => {
         return new Promise((resolve, reject) => {
-            let pets = db.get().collection(Collection.PETS_COLLECTION).find({ category: item }).toArray()
+            let pets = db.get().collection(Collection.PETS_COLLECTION).find({ category: value.item }).limit(parseInt(value.limit)).sort({ date: -1 }).toArray()
                 .catch((err) => reject(err))
             resolve(pets)
         })
@@ -141,7 +141,8 @@ module.exports = {
         })
     },
     editPost: (postDetails) => {
-        const { name, category, price, place, date, description, phone } = postDetails
+        console.log(postDetails);
+        const { name, category, price, place, description, phone } = postDetails
         return new Promise((resolve, reject) => {
             db.get().collection(Collection.PETS_COLLECTION)
                 .updateOne({ _id: objectId(postDetails.id) },
@@ -173,9 +174,26 @@ module.exports = {
                         name: user.name,
                         phone: user.phone,
                         place: user.place,
-                        image:user.id+'.png'
                     }
                 }).then((response) => resolve(response))
+                .catch((err) => reject(err))
+        })
+    },
+    updateUserImage: (id) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(Collection.USER_COLLECTION).updateOne({ _id: objectId(id) },
+                {
+                    $set: {
+                        image: id + '.jpg'
+                    }
+                }).then((response) => resolve(response))
+                .catch((err) => reject(err))
+        })
+    },
+    getSellerDetails: (id) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(Collection.USER_COLLECTION).findOne({ _id: objectId(id) })
+                .then((response) => resolve(response))
                 .catch((err) => reject(err))
         })
     }

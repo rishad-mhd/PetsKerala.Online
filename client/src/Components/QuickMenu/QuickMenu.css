@@ -1,21 +1,20 @@
-/* @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
-
-body{
-  font-family: "Open Sans", sans-serif;
-} */
 .menuBar {
-    width: 100%;
-    padding: 4px;
-    /* filter: blur(1.5rem); */
-    background-color:#c5f80c2c;
+    width: 80%;
+    padding: 3px;
+    margin-top: -19px;
+    background-color:#ffffff;
+    margin-left: 10%;
+    border-radius: 30px;
+    position: relative;
+    box-shadow: 0px 0px 0px 2px rgba(191, 207, 197, 0.055),0px 1px 10px 0px rgba(0, 0, 0, 0.123);
     
   }
 
 .menuBar .categoryMenu{
   cursor: pointer;
   display: flex;
-  padding: 10px;
-  padding-left: 24vw;
+  padding: 8px;
+  padding-left: 17vw;
   padding-right: 25vw;
   justify-content: space-between;
   overflow: auto;
@@ -25,7 +24,7 @@ body{
 
 .menuBar .categoryMenu span {
   font-weight: 450;
-  padding:10px 20px 10px 20px;
+  padding:8px 20px 10px 20px;
   /* background-color:#dbdbdb60; */
   color: #424242;
   border-radius:8px;
@@ -35,9 +34,15 @@ body{
 
 
 .menuBar .categoryMenu span:hover{
-  background-color:#d3dbffc7;
+  background-color:#d3dbffab;
   color: rgb(0, 0, 0);
-  filter: blur(0);
+  padding:8px 20px 10px 20px;
+  margin-bottom: 10px;
+  border-radius:28px;
+}
+
+.menuBar .categoryMenu::-webkit-scrollbar {
+  display: none;
 }
 
 @media only screen and (max-width: 1210px) {
@@ -52,22 +57,39 @@ body{
 
 @media only screen and (max-width: 700px) {
 
-  .menuBar .categoryMenu span {
-    font-weight: 450;
-    align-items: center;
-    font-size: small;
-    padding:10px 8px 10px 15px;
-    
-  }
-  .menuBar .categoryMenu .name{
-    padding:0px;
-    padding-right: 0em;
-    margin-top: -8px;
-    margin-bottom: -3px;
-    
-    
-    
+  .menuBar {
+    width: 96%;
+    padding: 4px;
+    margin-top: -1.5em;
+    margin-left: .5em;
+    background-color:#ffffff;
+    box-shadow: 0px 0px 0px 2px rgba(191, 207, 197, 0.055),0px 1px 10px 0px rgba(0, 0, 0, 0.123);
   }
 
+.menuBar .categoryMenu{
+  cursor: pointer;
+  display: flex;
+  padding: 10px;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  justify-content: space-between;
+  overflow: auto;
+  
+}
 
+
+.menuBar .categoryMenu span {
+  font-weight: 400;
+  padding:5px 22px 8px 22px;
+  background-color:#ffffff;
+  color: #424242;
+  margin-right: 5px;
+  border-radius:20px;
+  filter: none;
+  text-align: center;
+  border: 1.5px solid #7dff033f;
+}
+.menuBar .categoryMenu span:hover{
+ display: none;
+}
 }

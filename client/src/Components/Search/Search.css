@@ -1,0 +1,60 @@
+ .searchParent{
+     display: flex;
+     padding: 3em;
+     justify-content: center;
+     align-items: center;
+     padding-top: 5em;
+    
+ }
+ .searchParent .search{
+    width: 95%;
+    background: #fff;
+    padding: 1em;
+    border-radius: 18px;
+    padding-top: 3em;
+    box-shadow: 0px 0px 0 1px rgba(191, 207, 197, 0.2),0 2px 10px 0 rgba(0,0,0,0.19);
+}
+
+.searchParent .search .x-symbol{
+    margin-top: -41px;
+}
+
+.searchParent .search p{
+    float: left;
+    margin-right: 12px;
+    color: rgb(78, 78, 78);
+    margin-left: 10px;
+}
+.searchParent .search input{
+    width: 95%;
+    padding: 4px;
+    margin-left: 5px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.055),0px 2px 10px 0px rgba(29, 112, 43, 0.068);
+}
+.searchParent .search span{
+    float: right;
+    /* margin-top: -40px; */
+}
+.searchParent .tiles{
+    height: 83vw;
+    overflow-y: auto;
+}
+
+.searchParent  .search-tile{
+    margin: 5px;
+    width: 13em;
+    height: 2em;
+    display: flex;
+    padding: 1em;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px 0px rgba(191, 207, 197, 0.2);
+}
+
+.searchParent .search-tile .cate{
+    font-size: 13px;
+}

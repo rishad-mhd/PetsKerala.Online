@@ -10,15 +10,27 @@
 }
 .bannerChildDiv .banner img{
   width: 100%; 
-
-  
 }
+  .bannerChildDiv .banner3 {
+  display: none;
+  }
+  
+
 @media only screen and (max-width: 700px) {
   .otherQuickOptions {
     display: none;
   }
   .bannerChildDiv .banner {
+    display: none;
+  }
+  .bannerChildDiv .banner3 {
+    display: block;
     position: relative;
+   
+  }
+  .bannerChildDiv .banner3 img {
+    width: 100%;
+    opacity: 99%;
   }
 }
   

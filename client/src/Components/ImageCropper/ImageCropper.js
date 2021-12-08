@@ -1,28 +1,63 @@
+import axios from 'axios';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
-import { useDispatch } from 'react-redux';
-import { setCroppedImage } from '../../Redux/Actions/PetsAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserImage } from '../../Redux/Actions/PetsAction';
+import './ImageCropper.css'
 
-function ImageCropper({ value }) {
+function ImageCropper({ value, load }) {
     const [upImg, setUpImg] = useState();
     const imgRef = useRef(null);
     const previewCanvasRef = useRef(null);
     const [crop, setCrop] = useState({ unit: '%', width: 30, aspect: value.aspect });
-    const [completedCrop, setCompletedCrop] = useState(null);
+    const [completedCrop, setCompletedCrop] = useState();
     const dispatch = useDispatch()
+    const [state, setState] = useState()
+    const [progress, setProgress] = useState()
+    load(progress)
+    
+
+
 
     const onSelectFile = (e) => {
+        setState(true)
         if (e.target.files && e.target.files.length > 0) {
             const reader = new FileReader();
             reader.addEventListener('load', () => setUpImg(reader.result));
             reader.readAsDataURL(e.target.files[0]);
+
         }
     };
+
 
     const onLoad = useCallback((img) => {
         imgRef.current = img;
     }, []);
+
+    const options = {
+        onUploadProgress: (progressEvent) => {
+            const { loaded, total } = progressEvent;
+            let percent = Math.floor((loaded * 100) / total)
+            // console.log(percent, "%", loaded, "b", total);
+            setProgress(true)
+        }
+    }
+
+    const updateImage = (image) => {
+        console.log('hi');
+        let formdata = new FormData()
+        if (image) {
+            formdata.append('image', image)
+        }
+        axios.put('/users/update-user-image', formdata, options)
+            .then((res) => {
+                // window.location.reload()
+                dispatch(setUserImage(null))
+                console.log(res);
+                setProgress(null)
+            }).catch((err) => console.log(err))
+    }
 
     function generateDownload(canvas, crop) {
         if (!crop || !canvas) {
@@ -31,17 +66,10 @@ function ImageCropper({ value }) {
 
         canvas.toBlob(
             (blob) => {
-                const previewUrl = window.URL.createObjectURL(blob);
-
-                // const anchor = document.createElement('a');
-                // anchor.download = 'cropPreview.png';
-                // anchor.href = URL.createObjectURL(blob);
-                // anchor.click();
                 console.log(blob);
-                dispatch(setCroppedImage(blob))
-                // window.URL.revokeObjectURL(previewUrl);
+                updateImage(blob)
             },
-            'image/png',
+            'image/jpeg',
             1
         );
     }
@@ -79,45 +107,65 @@ function ImageCropper({ value }) {
         );
     }, [completedCrop]);
 
-    // useEffect(() => {
-    //     dispatch(setCroppedImage(previewCanvasRef))
-    // }, [previewCanvasRef])
-
     return (
-
-        <div className="">
+        <div>
             <div>
-                <button
-                    type="button"
-                    disabled={!completedCrop?.width || !completedCrop?.height}
-                    onClick={() =>
-                        generateDownload(previewCanvasRef.current, completedCrop)
-                    }
-                >
-                    Download cropped image
-                </button>
+                <label htmlFor="upload" onChange={onSelectFile} style={{ float: 'right', marginBottom: '-38px' }}>
+                    <i class="fas fa-pencil-alt "></i>
+                    <input style={{ display: 'none' }} id='upload' type="file" accept="image/*" />
+                </label>
             </div>
-            <div>
-                <input type="file" accept="image/*" onChange={onSelectFile} />
-            </div>
-            <ReactCrop
-                src={upImg}
-                onImageLoaded={onLoad}
-                crop={crop}
-                onChange={(c) => setCrop(c)}
-                onComplete={(c) => setCompletedCrop(c)}
-            />
+            {/* {<div class="progres">
+            <div class="progress-bar">{progress}25%</div>
+            </div>} */}
+            {state && <div className="transparent-div">
+                <div className="image-cropper">
+                    <div>
+                        <ReactCrop
+                            src={upImg}
+                            onImageLoaded={onLoad}
+                            crop={crop}
+                            onChange={(c) => setCrop(c)}
+                            onComplete={(c) => setCompletedCrop(c)}
+                        />
+                        <div className="crop-button">
+                            <button className="btn btn-outline-danger" onClick={() => {
+                                // window.location.reload()
+                                document.getElementById('upload').value = null
+                                setState(false)
+                            }}>
+                                Cancel
+                            </button>
+                            <button
+                                className="btn btn-outline-primary"
+                                type="button"
+                                style={{ marginLeft: '1em' }}
+                                disabled={!completedCrop?.width || !completedCrop?.height}
+                                onClick={() => {
+                                    generateDownload(previewCanvasRef.current, completedCrop)
+                                    document.getElementById('upload').value = null
+                                    setState(false)
+                                }}>
+                                Done
+                            </button>
+                        </div>
+                    </div>
 
-            <div>
-                <canvas
-                    ref={previewCanvasRef}
-                    style={{
-                        width: "15em",
-                        height: "15em"
-                    }}
-                />
-            </div>
-
+                    <div style={{
+                        display: 'none'
+                    }}>
+                        <canvas
+                            ref={previewCanvasRef}
+                            style={{
+                                width: "15em",
+                                height: "15em",
+                            }}
+                        />
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>}
         </div>
     );
 }

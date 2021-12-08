@@ -34,6 +34,7 @@ router.get('/google/callback',
   }),
   (req, res, next) => {
     if (req.user) {
+      // res.send("")
       res.redirect(successLoginUrl)
     }
   }
@@ -41,7 +42,8 @@ router.get('/google/callback',
 
 router.get('/auth/user', isAuthenticateduser, (req, res) => {
   console.log(req.user);
-  UserHelpers.getUserDetails(req.user._id).then((response) => {
+  UserHelpers.getUserDetails(req.user._id || req.user.id).then((response) => {
+    console.log(response);
     user = {
       id: response._id,
       name: response.name,
@@ -80,7 +82,7 @@ router.post('/auth/signup', (req, res) => {
         user = {
           name: req.user.name,
           email: req.user.email,
-          phone: req.user.phone
+          phone: req.user.phone,
         }
         res.send(user)
       })
@@ -100,7 +102,8 @@ router.post('/auth/login', (req, res,) => {
         user = {
           name: req.user.name,
           email: req.user.email,
-          phone: req.user.phone
+          phone: req.user.phone,
+          place: req.user.place || ""
         }
         res.send(user)
       })
@@ -190,7 +193,7 @@ router.get('/selected-pet', (req, res) => {
 
 router.get('/category', (req, res) => {
 
-  UserHelpers.getCategorisedPets(req.query.item)
+  UserHelpers.getCategorisedPets(req.query)
     .then((response) => res.send(response))
     .catch((err) => {
       console.log(err);
@@ -284,28 +287,58 @@ router.get('/delete-post', (req, res) => {
 })
 
 router.put('/update-user', (req, res) => {
-  let userDetails = JSON.parse(req.body.userDetails)
+  let userDetails
+  if (req.body.userDetails) {
+    userDetails = JSON.parse(req.body.userDetails)
+    UserHelpers.updateUser(userDetails)
+      .then((response) => {
+        res.send(response)
+      })
+      .catch((err) => console.log(err))
+  }
 
-  console.log(userDetails);
-  console.log(req.files);
+})
+
+router.put('/update-user-image', (req, res) => {
+  console.log(req.user);
   if (req.files) {
+    console.log(req.files);
     let image = req.files.image
-    image.mv(`./public/images/${userDetails.id + '.png'}`, (err) => {
+    image.mv(`./public/userImages/${req.user._id + '.jpg'}`, (err) => {
       if (err) {
 
         res.status(500).send(err);
 
       }
+
     })
+    UserHelpers.updateUserImage(req.user._id)
+      .then((response) => {
+        res.send(response)
+      })
+      .catch((err) => console.log(err))
   }
-
-  UserHelpers.updateUser(userDetails)
-    .then((response) => {
-      res.send(response)
-    })
-    .catch((err) => console.log(err))
-
 })
 
+router.get("/seller", (req, res) => {
+  console.log(req.query);
+  UserHelpers.getSellerDetails(req.query.id)
+    .then((response) => res.send(response))
+    .catch((err) => res.send(err))
+})
+
+
+router.get('/all-images', (req, res) => {
+  const dirnameExportImg = './public/images'
+  fs.readdir(dirnameExportImg, function (err, files) {
+    if (err) {
+      console.log(err)
+    }
+    res.send(files)
+    files.map(
+      (file) => { console.log(file) }
+    )
+  })
+})
 
 module.exports = router;

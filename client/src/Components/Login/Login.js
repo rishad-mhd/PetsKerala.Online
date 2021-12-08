@@ -59,7 +59,8 @@ function Login() {
         axios.post('/users/auth/login', { email, password }, { withCredentials: true })
             .then((res) => {
                 console.log(res)
-                dispatch(setUser(res.data))
+                fetchAuthUser()
+                // dispatch(setUser(res.data))
             }).catch((err) => {
                 console.log(err.response.data.message)
                 setError(err.response.data.message)

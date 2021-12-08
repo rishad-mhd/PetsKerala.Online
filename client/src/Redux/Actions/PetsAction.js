@@ -55,9 +55,30 @@ export const setUserPost = (Pets) => {
     }
 }
 
-export const setCroppedImage = (image) => {
+export const setFLimit = (limit) => {
     return {
-        type: ActionTypes.SET_CROPPED_IMAGE,
+        type: ActionTypes.SET_F_LIMIt,
+        payload: limit
+    }
+}
+
+export const setCLimit = (limit) => {
+    return {
+        type: ActionTypes.SET_C_LIMIt,
+        payload: limit
+    }
+}
+
+export const setGLimit = (limit) => {
+    return {
+        type: ActionTypes.SET_G_LIMIt,
+        payload: limit
+    }
+}
+
+export const setUserImage = (image) => {
+    return {
+        type: ActionTypes.SET_USER_IMAGE,
         payload: image
     }
 }

@@ -1,50 +1,52 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
-
 * { box-sizing: border-box; }
 
-body {
-    font-family: Roboto;
+/* body {
     font-weight: 400;
     color: rgb(32, 32, 32);
-}
+} */
 
 .card1 {
-    
-    width: 80%;
-    height: 500px;
-    /* position: absolute; */
-    background: white;
-    margin: 0 auto;
+    width: 82%;
+    height: 570px;
+    background: rgba(255, 255, 255, 0.397);
+    margin:  auto;
     left: 50%;
-    /* transform: translate(-50%, -50%); */
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.13);
     transition: all 0.3s;
-    border-radius: 18px;
+    border-radius: 4px 4px 18px 18px;
 }
     
-.card1:hover {
+/* .card1:hover {
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2);
 
-    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-
-}
+} */
 
 .card1 nav {
-
-width: 100%;
-color: #727272;
-text-transform: uppercase;
-padding: 20px;
-border-bottom: 2px solid #efefef;
-font-size: 12px;
+    width: 100%;
+    background-color: rgba(168, 214, 176, 0.267);
+    box-shadow: 0 0 3px 0 rgba(36, 36, 36, 0.13);
+    color: #727272;
+    text-transform: uppercase;
+    padding: 20px;
+    border-radius:4px;
+    border-bottom: 2px solid #efefef;
+    font-size: 12px;
+    height: 10px;
+}
+.card1 nav h2{
+    color: #303030;
+    text-transform: uppercase;
+    font-size: 14px;
+    height: 10px;
+    margin-top: -0.5em;
 }
 .card1 .heart1 {
-
-height: 24px;
-width: 24px;
-float: right;
-margin-top: -3px;
-transition: all 0.3s ease;
-cursor: pointer;
+    height: 24px;
+    width: 24px;
+    float: right;
+    margin-top: -3px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
  .heart1:hover {
     
@@ -54,68 +56,96 @@ cursor: pointer;
 
 .card1 .arrow1 {
 
-float: left;
-height: 15px;
-width: 15px;
-margin-right: 10px;
+    float: left;
+    height: 15px;
+    width: 15px;
+    margin-right: 10px;
 
 }
 
 .photoheight{
-    min-height: 18em;
+    min-height: 20em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #cef0af;
+    box-shadow: 0px 0px 10px 1px rgba(191, 207, 197, 0.2);
+    border-radius: 8px;
 }
 
 .photo {
-
-padding: 30px;
-width: 45%;
-text-align: center;
-
-float: left;
+    padding: 22.9px;
+    width: 45%;
+    text-align: center;
+    float: left;
+    
+    /* border-radius: 20px; */
+    
 }
-.photo img { 
-max-height: 18em; 
-border-radius: 5px;
+.photoheight img { 
+    max-height: 20em; 
+    border-radius: 2px;
+    /* width: 100%; */
+    align-items: center;
+    /* object-fit: cover;
+    max-height: unset; */
+    max-Width:31vw;
+    box-shadow: 0px 0px 0 1px rgba(191, 207, 197, 0.2),0 2px 10px 0 rgba(0,0,0,0.19);
 }
-
-
 
 .description {
-
-padding: 30px;
-float: left;
-width: 55%;
-border-left: 2px solid #efefef;
+    font-weight: 400;
+    box-shadow: 0px 1px 5px 1px rgba(36, 36, 36, 0.13);
+    padding: 30px;
+    float: left;
+    margin-left: 4px;
+    margin-top: 25px;
+    border-radius: 8px;
+    width: 53%;
+    border-left: 2px solid #efefef;
 }
 .description h1 {
     color: #515151;
-    font-weight: 300;
+    font-weight: 500;
     padding-top: 15px;
     margin: 0;
+    
     font-size: 30px;
-    font-weight: 300;
 }
 
 .description h2 {
 color: #515151;
 margin: 0;
-text-transform: uppercase;
+/* text-transform: uppercase; */
 font-weight: 500;
 }
-
+.description h3 {
+    color: #1d1d1d;
+    margin: 0;
+    /* text-transform: uppercase; */
+    font-weight: 400;
+    font-size: 20px;
+    }
+    
 .description h4 { 
     margin: 0;
-    color: #727272;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 12px
+    color: #4d4d4d;
+    /* text-transform: uppercase; */
+    font-weight: 400;
+    font-size: 16px
 }
-
+.description h5 { 
+    margin: 0;
+    color: #03aa1f;
+    /* text-transform: uppercase; */
+    font-weight: 400;
+    font-size: 16px
+}
 .description p { 
-    font-size: 12px; 
+    font-size: 16px; 
     line-height: 20px;
-    color: #727272;
-    padding: 20px 0;
+    color: #363636;
+    padding: 10px 0;
     margin: 0;
 }
 
@@ -136,49 +166,90 @@ font-weight: 500;
     font-weight: 500;
 }
 .description button:hover {
-    
-    /* // background: darken(white, 2%); */
     border: 1px solid #aedaa6;
     color: #aedaa6;
     cursor: pointer;
+
+}
+
+.image-multiple{
+    height: 4.4em;
+    margin-top: 0em;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* margin-left: %; */
+    box-shadow: 1px 1px 10 1px rgb(63, 63, 63);
+    /* margin-right: %; */
+}
+.card1 span{
+    margin-top: 0.7em;
+    display: flex;
+    /* margin-left: 10%; */
+    /* margin-right: 10%; */
+    font-size: 20px;
+    font-weight: 400;
+    /* background-color: rgba(140, 224, 196, 0.39); */
+    padding: 1px;
+    width:100%
+}
+.card1 span h5{
+    font-size: 14px;
+    font-weight: 400;
+    width:100%;
+    margin-top: .6em;
+}
+
+.image-multiple::-webkit-scrollbar {
+height: 6px;
+
+}
+.image-multiple::-webkit-scrollbar-track {
+border-radius: 10px;
+background: rgba(0,0,0,0.1);
+}
+.image-multiple::-webkit-scrollbar-thumb{
+border-radius: 10px;
+
+background: rgba(0,0,0,0.2);
+}
+.image-multiple::-webkit-scrollbar-thumb:hover{
+    background: rgba(0,0,0,0.4);
+   
+}
+.image-multiple::-webkit-scrollbar-thumb:active{
+    background: rgba(0,0,0,.9);
     
+}
+@media only screen and (max-width: 700px) {
+    .description{
+        float: none;
+        width: 97.4%;
+        border-left:0;
+        margin-top: 9px;
     }
-
-    .image-multiple{
-        height: 44px;
-        margin-top: 1.8em;
-        display: flex;
-        overflow-x: auto;
-        overflow-y: hidden;
-        margin-left: 10%;
+    .photo{
+        width: 100%;
+        padding: 16px;
         
-        margin-right: 10%;
     }
-
-    .image-multiple::-webkit-scrollbar {
-        height: 6px;
-      }
-      .image-multiple::-webkit-scrollbar-track {
-        border-radius: 10px;
-        background: rgba(0,0,0,0.1);
-      }
-      .image-multiple::-webkit-scrollbar-thumb{
-        border-radius: 10px;
-        background: rgba(0,0,0,0.2);
-      }
-      .image-multiple::-webkit-scrollbar-thumb:hover{
-          background: rgba(0,0,0,0.4);
-      }
-      .image-multiple::-webkit-scrollbar-thumb:active{
-          background: rgba(0,0,0,.9);
-      }
-      @media only screen and (max-width: 700px) {
-          .description{
-              float: none;
-              width: 100%;
-          }
-          .photo{
-              width: 100%;
-            
-          }
-      }
+    
+    .photoheight{
+        padding: 2px;
+        box-shadow: none;
+    }
+    .photoheight img{
+        max-width: 100%;
+    }
+    
+    .card1{
+        /* display: grid; */
+        height: auto;
+        margin-bottom: 7em;
+        box-shadow: none;
+        
+    }
+    .card1 nav {
+        border-radius: 8px;
+    }
+}

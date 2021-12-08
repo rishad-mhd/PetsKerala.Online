@@ -3,24 +3,95 @@
 }
 
 
+
 @media only screen and (max-width:700px){
     .Bottom-nav-parent{
         display: flex;
         position: fixed;
-        height: 3em;
+        height: 4em;
         bottom: 0;
-        background: #353535;
+        background: #ffffff;
         width: 100%;
         justify-content: center;
         align-items: center;
+        box-shadow: 0px 0px 0 1px rgba(191, 207, 197, 0.2),0 2px 10px 0 rgba(0,0,0,0.19);
+        
+
     } 
     .Bottom-nav-child{
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 80%;
-        height: 3em;
-        color: #fff;
+        /* height: 2em; */
+        color: rgba(66, 66, 66, 0.74);
+    }
+    .Bottom-nav-child img{
+        /* display: flex;
+        align-items: center;
+        justify-content: space-between; */
+        /* box-shadow: 0px 0px 0px 1px rgba(191, 207, 197, 0.2),0 2px 10px 0 rgba(0,0,0,0.19); */
+        height: 2em;
+        width: 2em;
+        padding: 2.3px;
+        opacity: 80%;
+        /* margin-bottom: 1em; */
+        color: rgba(66, 66, 66, 0.74);
+    } 
+    .t{
+        /* display: flex; */
+        /* position: fixed; */
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        color: rgba(66, 66, 66, 0.74);
+     }
+    .t h3{
+        /* align-items: center;
+        justify-content: space-between; */
+        /* width: 80%; */
+        margin: 0;
+        font-weight: 400;
+        /* padding-left: .8em; */
+        font-size:14px;
+        color: rgba(66, 66, 66, 0.74);
+       text-align: center;
+       padding: 2.7px;
+    }
+    .image-div{
+        display: flex;
+        justify-content: center;
+    }
+    @media only screen and (max-width:360px){
+        .Bottom-nav-parent .search{
+            top: -651%;
+        }
+        .Bottom-nav-parent .search input{
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.055),0px 2px 10px 0px rgba(29, 112, 43, 0.068);
+        }
+        .Bottom-nav-parent .search span{
+            float: right;
+            /* margin-top: -68px; */
+        }
+        .Bottom-nav-parent .tiles{
+            height: 53vw;
+            overflow-y: auto;
+        }
+        
+        .Bottom-nav-parent .search-tile{
+            margin: 5px;
+            width: 90%;
+            height: auto;
+            display: flex;
+            padding: 1em;
+        }
+        
+        .Bottom-nav-parent .search-tile .cate{
+            font-size: 13px;
+        }
+        
     }
 }
 

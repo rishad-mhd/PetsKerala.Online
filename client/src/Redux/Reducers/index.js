@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { categorisedPetsReducer, editPostReducer, imageCropReducer, navLoginReducer, petsReducer, searchReducer, selectedPetReducer, userPostReducer, userReducer } from './PetsReducer'
+import { categorisedPetsReducer, limitReducer, navLoginReducer, petsReducer, searchReducer, selectedPetReducer, userImageReducer, userPostReducer, userReducer } from './PetsReducer'
 
 const reducers = combineReducers({
     allPets: petsReducer,
@@ -9,7 +9,8 @@ const reducers = combineReducers({
     categorisedPets: categorisedPetsReducer,
     search: searchReducer,
     userPost: userPostReducer,
-    croppedImage: imageCropReducer,
+    limit: limitReducer,
+    userImage:userImageReducer,
 
 })
 
